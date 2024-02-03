@@ -1,0 +1,151 @@
+
+
+.widget-area .widget{
+	margin-bottom: 40px;
+	padding: 35px 30px 35px;
+	background-color: #fff;
+	border: 1px solid #e6e6e6;
+	border-radius: 8px;
+	box-shadow: 0 0 5px rgb(0 0 0 / 10%);
+}
+.widget-area .widget h2{
+	position: relative;
+	font-size: 24px;
+	margin-bottom: 40px;
+}
+.widget-area .widget h2::before{
+	content: '';
+	position: absolute;
+	height: 3px;
+	width: 88px;
+	bottom: -11px;
+	background: #aec6ef;
+}
+.widget-area .widget h2::after{
+	content: '';
+	position: absolute;
+	height: 8px;
+	width: 8px;
+	bottom: -13px;
+	left: 0;
+	border-radius: 50%;
+	background-color: #7744D9;
+	-webkit-animation: MOVE-BG 3s linear infinite alternate;
+	-moz-animation: MOVE-BG 3s linear infinite alternate;
+	-o-animation: MOVE-BG 3s linear infinite alternate;
+	animation: MOVE-BG 3s linear infinite alternate;
+}
+@-webkit-keyframes MOVE-BG {
+	from {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+	to {
+		-webkit-transform: translateX(88px);
+		transform: translateX(88px);
+	}
+}
+@keyframes MOVE-BG {
+	from {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+	to {
+		-webkit-transform: translateX(88px);
+		transform: translateX(88px);
+	}
+}
+
+
+.recent-post-item {
+	clear: both;
+	overflow: hidden;
+	margin-bottom: 14px;
+	border-bottom: 1px solid #E8E8E8;
+	padding-bottom: 0px;
+}
+.recent-post-item:last-child{
+	border-bottom: none;
+	margin-bottom: 0;
+}
+.recent-post-image {
+	float: left;
+	margin-right: 25px;
+}
+.recent-post-image img {
+	border-radius: 5px;
+}
+.recent-post-text  h4 {
+	margin-bottom: 2px;
+	margin-top: 0px;
+	line-height: 16px;
+	font-size: 22px;
+}
+.recent-post-text {
+	overflow: hidden;
+}
+.recent-post-text h4 a {
+	color: #232323;
+	font-size: 18px;
+	line-height: 22px;
+	-webkit-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	font-weight: 700;
+}
+.recent-post-text h4 a:hover {
+	color: #7744D9;
+}
+.recent-post-text .rcomment {
+	color: #616161;
+	font-size: 15px;
+}
+.recent-post-text .rcomment {
+	color: #616161;
+	font-size: 15px;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.widget-area .widget ul,
+.widget-area .widget ol{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.widget-area .widget ul li a,
+.widget-area .widget ol li a{
+	color: #616161;
+}
+.widget-area .widget ul li a:hover,
+.widget-area .widget ol li a:hover{
+	color: #7744D9;
+}
+
+.widget-area .widget ul li,
+.widget-area .widget ol li{
+	transition: .3s;
+	border-top: 1px solid #E8E8E8;
+	padding: 15px 0;
+	position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
