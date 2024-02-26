@@ -793,14 +793,14 @@ rs-dotted.threexthreewhite		{	background:url(../images/gridtile_3x3_white.png)}
   margin: 3px 0;
 }
 
-.quick_style_example_wrap .rev-burger:hover :first-child,
+.quick_style_excyberopsnetworks_wrap .rev-burger:hover :first-child,
 #dialog_addbutton .rev-burger:hover :first-child,
 .open .rev-burger :first-child,
 .open.rev-burger :first-child {
   transform: translateY(6px) rotate(-45deg);
 
 }
-.quick_style_example_wrap .rev-burger:hover :nth-child(2),
+.quick_style_excyberopsnetworks_wrap .rev-burger:hover :nth-child(2),
 #dialog_addbutton .rev-burger:hover :nth-child(2),
 .open .rev-burger :nth-child(2),
 .open.rev-burger :nth-child(2) {
@@ -808,7 +808,7 @@ rs-dotted.threexthreewhite		{	background:url(../images/gridtile_3x3_white.png)}
 
   opacity: 0;
 }
-.quick_style_example_wrap .rev-burger:hover :last-child,
+.quick_style_excyberopsnetworks_wrap .rev-burger:hover :last-child,
 #dialog_addbutton .rev-burger:hover :last-child,
 .open .rev-burger :last-child,
 .open.rev-burger :last-child {

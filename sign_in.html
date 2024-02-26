@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-fluid min-vh-100 ">
+        <div class="card-body d-flex align-items-center w-100 justify-content-center ">
+            <form role="form" class="text-start custom-form" style="width: 380px;">
+                <span class="d-block text-center text-sm font-weight-bold">Sign In CyberOpsNetworks</span>
+                <div class="input-group d-flex flex-column input-group-outline">
+                    <label class="form-label" style="font-weight: 400;">Email</label>
+                    <input type="email" class="form-control" id="email" style="width: 100%;">
+                </div>
+                <div class="input-group d-flex flex-column input-group-outline mb-3">
+                    <label class="form-label" style="font-weight: 400;">Password</label>
+                    <input type="password" class="form-control" style="width: 100%;">
+                </div>
+                <div class="form-check form-switch d-flex align-items-center mb-3">
+                    <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+                    <label class="form-check-label mb-0 ms-3" for="rememberMe">Keep me signed in</label>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn bg-gradient-primary mb-2" style="width: 100%;" onclick="signIn()">Sign in</button>
+                </div>
+                <p class="mt-4 text-sm text-center">
+                    Don't have an account?
+                    <a href="" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="dashboard/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function signIn() {
+            // Validate email (simple check for non-empty)
+            var emailInput = document.getElementById('email');
+            var email = emailInput.value.trim();
+
+            if (email === '') {
+                alert('Please enter a valid email address.');
+            } else {
+                // Redirect to the dashboard (replace this with your actual dashboard URL)
+                window.location.href = 'dashboard/dashboard.html';
+            }
+        }
+    </script>
+</body>
+</html>

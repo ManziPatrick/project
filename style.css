@@ -1,0 +1,12 @@
+.custom-form {
+   padding: 20px;
+    border: 1px black;
+    /* background-color: black; */
+}
+.custom-form {
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5), 0 0 4px rgba(50, 50, 66, 0.5);
+    border-radius: 15px;
+}
+.card-body{
+    height: 100vh;
+}

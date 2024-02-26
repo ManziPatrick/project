@@ -177,12 +177,14 @@ p.video-txt {
     position: absolute;
     bottom: 19%;
     right: 9%;
+    width: 50%;
+    height: 40%;
     -webkit-animation: 0.8s 0.8s fadeInUp both;
     animation: 0.8s 0.8s fadeInUp both;
 }
 .slider-single-image img {
 	display: block;
-	width: 97%;
+	width: 80%;
 }
 .slider_circle_img.rotateme {
     position: absolute;
