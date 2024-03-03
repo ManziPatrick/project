@@ -18,6 +18,27 @@
     -webkit-tap-highlight-color: transparent;
 }
 
+.owl-carousel {
+    position: relative;
+}
+
+
+.owl-prev{
+    position: absolute;
+    top: 50%;
+    left: 10;
+    transform: translateX(20%);
+    transform: translateY(-50%); 
+}
+
+.owl-next {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+
 .slick-list
 {
     position: relative;

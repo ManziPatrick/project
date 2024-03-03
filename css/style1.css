@@ -1,0 +1,125 @@
+
+.sub-left-link{
+	padding:0px;
+	margin:0px
+	}
+.sub-left-link h4{
+	padding:0px;
+	margin:0px;
+	font-size:18px
+	}
+.sub-left-link ul{
+	padding:0px;
+	margin:0px;
+	list-style-type: none;
+	
+
+	}
+
+	
+.sub-left-link ul li{
+	padding:0px;
+	
+	margin:0px
+	}
+.sub-left-link ul li a{
+	font-size:14px;
+	font-weight:normal;
+	color:#313c56;
+	line-height:34px
+	}
+.sub-left-link ul li a:hover{
+	color: #fec201
+	}
+.sub-left-link ul li a.active{
+	color: #fec201;
+	font-weight:600
+	}
+	
+.sub-left-link hr{
+	margin:15px 0px;
+	}
+.sub-left-link ul li a i{
+	background: linear-gradient(330deg, #e05252 0%, #99e052 25%, #52e0e0 50%, #9952e0 20%, #e05252 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent
+  }
+
+  @media only screen and (max-width: 480px) {
+	.btn {
+		font-size: 10px;
+		min-width: 110px;
+		line-height: 40px;
+		padding: 0 15px
+	}
+	.btn-img {
+		max-width: 110px
+	}
+	.btns {
+		margin: 0 -3px
+	}
+	.btns li {
+		margin: 10px 3px
+	}
+	}/*! 07.0 - FEATURES SECTION */
+	.text-block p:not(.lead) {
+		color: #a2b4d2
+	}
+	.text-block ul:not(.btns) {
+		margin-bottom: 20px
+	}
+	.text-block ul:not(.btns) li {
+		position: relative;
+		line-height: 2;
+		padding-left: 22px;
+		color: #a2b4d2
+	}
+	.text-block ul:not(.btns) li:before {
+		content: "";
+		background: #46bdf4;
+		height: 5px;
+		width: 5px;
+		border-radius: 50%;
+		position: absolute;
+		top: 13px;
+		left: 0
+	}
+	.text-block .heading-xs {
+		text-transform: uppercase
+	}
+	.io-azure .text-block p:not(.lead) {
+		color: #7ab9ff
+	}
+	.io-azure .text-block ul:not(.btns) li {
+		color: #7ab9ff
+	}
+	.io-azure .text-block .heading-xs {
+		color: #16a4fd
+	}
+	.io-azure .section-pro .text-block p:not(.lead), .io-azure .section-pro-alt .text-block p:not(.lead) {
+		color: #637097
+	}
+	.io-azure .section-pro .text-block ul:not(.btns) li, .io-azure .section-pro-alt .text-block ul:not(.btns) li {
+		color: #637097
+	}
+	.video-graph {
+		position: relative
+	}
+	.animated {
+		animation-duration: .6s;
+		z-index: 9
+	}
+	.lead {
+		font-family: poppinssemibold;
+		line-height: 1.6
+	}
+	
+	p.lead {
+		font-size: 1.27em;
+		font-family: 'poppinsmedium';
+		line-height: 1.68
+	}
+	h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+		line-height: 1.33;
+		color: #003870
+	}
