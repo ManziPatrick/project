@@ -13,16 +13,19 @@
     <meta name="robots" content="noindex,nofollow">
     <title>cyberopsnetworks Admin Lite Template by WrapPixel</title>
     <link rel="canonical" href="https://www.//templates/cyberopsnetworks-admin-lite/" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+    
+  <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-    <!-- Custom CSS -->
+<!-- Custom CSS -->
    <link href="css/style.min.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+   <link rel="stylesheet" href="blog.css">
+   
+  
+
+<!-- Include Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -62,12 +65,7 @@
                             
                         </span>
                     </a>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
+                   
                     <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
                         href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                 </div>
@@ -97,27 +95,18 @@
                                 </a>
                             </form>
                         </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
+                        
                         <li>
                             <a class="profile-pic" href="#">
                                 <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
                                     class="img-circle"><span class="text-white font-medium">Steave</span></a>
                         </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
+                     
                     </ul>
                 </div>
             </nav>
         </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
+        
         <aside class="left-sidebar" data-sidebarbg="skin6">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
@@ -178,20 +167,11 @@
                     </ul>
 
                 </nav>
-                <!-- End Sidebar navigation -->
+                
             </div>
             <!-- End Sidebar scroll-->
         </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
         <div class="page-wrapper" style="min-height: 250px;">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -208,224 +188,62 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- ============================================================== -->
-            <!-- End Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
+         
             <div class="container-fluid">
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
+              
                 <div class="row">
                    <!-- Existing Content ... -->
 
 <div class="col-md-12">
-    <div class="white-box">
-        <h3 class="box-title">Blog Dashboard</h3>
-        <div id="blogContainer">
-            <!-- Blog posts will be displayed here dynamically -->
+    
+    <main class="main-content">
+        
+        <button onclick="openForm()" class="create-button">Create New Blog</button>
+        <div id="formPopup" class="form-popup">
+            <span onclick="closeForm()" class="close-button">&times;</span>
+       
+                           <form id="blogForm" class="fixed-form" …>
+                        <label for="editor">title</label>
+                        <input type="text" id="title">
+                        <input id="x" type="hidden" name="content">
+                        <label for="editor">Blog Content:</label>
+                        <trix-editor input="x"  id="editor" name="editor" required></trix-editor>
+                       
+                     
+                      
+<div class="buttons">
+              
+              </div>
+
+            <button onclick="savePost()" type="button" class="save-button">Save Post</button>
+            
+        </form>  
+        <div>
+           
+            
+                      </div>
+              
+
         </div>
-        <button class="btn btn-primary" onclick="showPostForm()">New Post</button>
-        <div id="postForm" style="display: none;">
-            <h2>Create a New Post</h2>
-            <form onsubmit="addPost(event)">
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title:</label>
-                    <input type="text" class="form-control" id="title" required>
-                </div>
-                <div class="mb-3">
-                    <label for="content" class="form-label">Content:</label>
-                    <textarea class="form-control" id="content" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Image URL:</label>
-                    <input type="text" class="form-control" id="image" required>
-                </div>
-                <button type="submit" class="btn btn-success">Post</button>
-            </form>
-        </div>
-        <div id="editForm" style="display: none;">
-            <h2>Edit Post</h2>
-            <form onsubmit="updatePost(event)">
-                <input type="hidden" id="editId">
-                <div class="mb-3">
-                    <label for="editTitle" class="form-label">Title:</label>
-                    <input type="text" class="form-control" id="editTitle" required>
-                </div>
-                <div class="mb-3">
-                    <label for="editContent" class="form-label">Content:</label>
-                    <textarea class="form-control" id="editContent" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="editImage" class="form-label">Image URL:</label>
-                    <input type="text" class="form-control" id="editImage" required>
-                </div>
-                <button type="submit" class="btn btn-warning">Update</button>
-                <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
-            </form>
-        </div>
-    </div>
-</div>
 
-
-<!-- Existing Content ... -->
-
-<!-- Custom JavaScript for the Blog Dashboard -->
-<script>
-    // Function to display the post creation form
-    function showPostForm() {
-        document.getElementById('postForm').style.display = 'block';
-        document.getElementById('editForm').style.display = 'none';
-    }
-
-    // Function to add a new post
-    function addPost(event) {
-        event.preventDefault();
-
-        // Get form values
-        var title = document.getElementById('title').value;
-        var content = document.getElementById('content').value;
-        var image = document.getElementById('image').value;
-
-        // Validate form values (you can add more validation if needed)
-
-        // Create a new post object
-        var post = {
-            id: Date.now(), // Using timestamp as a simple identifier
-            title: title,
-            content: content,
-            image: image
-        };
-
-        // Display the new post
-        displayPost(post);
-
-        // Clear the form
-        document.getElementById('title').value = '';
-        document.getElementById('content').value = '';
-        document.getElementById('image').value = '';
-
-        // Hide the post creation form
-        document.getElementById('postForm').style.display = 'none';
-    }
-
-    // Function to display a post
-    function displayPost(post) {
-        var blogContainer = document.getElementById('blogContainer');
-
-        // Create a new post element
-        var postElement = document.createElement('div');
-        postElement.id = 'post-' + post.id;
-        postElement.className = 'post';
-        postElement.innerHTML = '<h4>' + post.title + '</h4>' +
-            '<p>' + post.content + '</p>' +
-            '<img src="' + post.image + '" alt="' + post.title + '">' +
-            '<button class="btn btn-info" onclick="showEditForm(' + post.id + ')">Edit</button>' +
-            '<button class="btn btn-danger" onclick="deletePost(' + post.id + ')">Delete</button>';
-
-        // Add the post element to the container
-        blogContainer.appendChild(postElement);
-    }
-
-    // Function to display the post edit form
-    function showEditForm(id) {
-        var post = getPostById(id);
-
-        // Populate the edit form with post values
-        document.getElementById('editId').value = id;
-        document.getElementById('editTitle').value = post.title;
-        document.getElementById('editContent').value = post.content;
-        document.getElementById('editImage').value = post.image;
-
-        // Display the edit form
-        document.getElementById('editForm').style.display = 'block';
-        document.getElementById('postForm').style.display = 'none';
-    }
-
-    // Function to update a post
-    function updatePost(event) {
-        event.preventDefault();
-
-        // Get form values
-        var id = document.getElementById('editId').value;
-        var title = document.getElementById('editTitle').value;
-        var content = document.getElementById('editContent').value;
-        var image = document.getElementById('editImage').value;
-
-        // Validate form values (you can add more validation if needed)
-
-        // Update the post in the UI
-        updatePostUI(id, title, content, image);
-
-        // Clear the form
-        document.getElementById('editId').value = '';
-        document.getElementById('editTitle').value = '';
-        document.getElementById('editContent').value = '';
-        document.getElementById('editImage').value = '';
-
-        // Hide the edit form
-        document.getElementById('editForm').style.display = 'none';
-    }
-
-    // Function to update a post in the UI
-    function updatePostUI(id, title, content, image) {
-        var postElement = document.getElementById('post-' + id);
-
-        // Update the post element with new values
-        postElement.querySelector('h4').innerText = title;
-        postElement.querySelector('p').innerText = content;
-        postElement.querySelector('img').src = image;
-
-        // Display the post element
-        postElement.style.display = 'block';
-    }
-
-    // Function to cancel the post edit
-    function cancelEdit() {
-        // Clear the edit form
-        document.getElementById('editId').value = '';
-        document.getElementById('editTitle').value = '';
-        document.getElementById('editContent').value = '';
-        document.getElementById('editImage').value = '';
-
-        // Hide the edit form
-        document.getElementById('editForm').style.display = 'none';
-    }
-
-    // Function to delete a post
-    function deletePost(id) {
-        var postElement = document.getElementById('post-' + id);
-        postElement.parentNode.removeChild(postElement);
-    }
-
-    // Function to get a post by ID (for demonstration purposes)
-    function getPostById(id) {
-        // In a real-world scenario, you would fetch data from a database
-        // Here, we are using a scyberopsnetworksPosts array for demonstration
-        return scyberopsnetworksPosts.find(post => post.id === id);
-    }
-
-    // Scyberopsnetworks data for demonstration
-    var scyberopsnetworksPosts = [
-        {
-            id: 1,
-            title: 'Scyberopsnetworks Post 1',
-            content: 'This is the content of scyberopsnetworks post 1.',
-            image: 'https://via.placeholder.com/150'
-        },
-        {
-            id: 2,
-            title: 'Scyberopsnetworks Post 2',
-            content: 'This is the content of scyberopsnetworks post 2.',
-            image: 'https://via.placeholder.com/150'
-        }
-    ];
-
-    // Initialize the blog with scyberopsnetworks data
-    scyberopsnetworksPosts.forEach(displayPost);
-</script>
+        <table class="table text-nowrap">
+            <thead>
+                <tr>
+                    <th class="border-top-0">#</th>
+                    <th class="border-top-0">Author Name</th>
+                    <th class="border-top-0">Blog Name</th>
+                    <th class="border-top-0">Image</th>
+                    <th class="border-top-0">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="blogTableBody">
+               
+            </tbody>
+            
+        </table>
+        <div id="paginationContainer"></div>
+        
+    </main>
 
                     </div>
                 </div>
@@ -433,29 +251,17 @@
             </div>
            
             <footer class="footer text-center"> 2021 © cyberopsnetworks Admin brought to you by <a
-                    href="https://www.//">/</a>
+                    href="https://www.//"></a>
             </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
     <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/app-style-switcher.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
-    <!--Menu sidebar -->
+        <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>

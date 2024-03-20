@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Form</title>
+</head>
+<body>
+    <h1>Create a New Blog Post</h1>
+    <form id="blog-post-form">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" required><br><br>
+
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="5" cols="50" required></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // Function to handle form submission
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            // Gather input data
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const date = document.getElementById('date').value;
+            const content = document.getElementById('content').value;
+
+            // Create an object to store the blog post data
+            const blogPostData = {
+                title: title,
+                author: author,
+                date: date,
+                content: content
+            };
+
+            // Convert the object to a JSON string
+            const blogPostJSON = JSON.stringify(blogPostData);
+
+            // Store the blog post data in localStorage
+            localStorage.setItem('blogPost', blogPostJSON);
+
+            // Optionally, you can also send the data to a server here using fetch() or XMLHttpRequest
+            // Example: fetch('https://example.com/post-blog', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: blogPostJSON
+            // })
+            // .then(response => response.json())
+            // .then(data => console.log(data))
+            // .catch(error => console.error('Error:', error));
+            
+            // Optionally, redirect to a thank you page or display a success message
+            alert('Blog post submitted successfully!');
+            // You can redirect to a thank you page using window.location.href = 'thank-you.html';
+        }
+
+        // Add event listener to the form for form submission
+        document.getElementById('blog-post-form').addEventListener('submit', handleSubmit);
+    </script>
+</body>
+</html>

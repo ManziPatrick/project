@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stored Blog Posts</title>
+    <style>
+        /* CSS styles */
+        .blog-post {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .blog-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .blog-author {
+            font-style: italic;
+            color: #666;
+        }
+
+        .blog-date {
+            color: #999;
+        }
+
+        .blog-content {
+            margin-top: 10px;
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Blog Posts</h1>
+    <div id="blog-posts-container">
+        <!-- Blog posts will be dynamically added here -->
+    </div>
+
+    <script>
+        // Function to display all blog posts
+        function displayBlogPosts() {
+            const blogPostsContainer = document.getElementById('blog-posts-container');
+            blogPostsContainer.innerHTML = ''; // Clear existing content
+
+            // Loop through all stored blog posts in localStorage
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('blogPost')) { // Check if the key represents a blog post
+                    const blogPostJSON = localStorage.getItem(key);
+                    const blogPostData = JSON.parse(blogPostJSON);
+
+                    // Format the blog post as HTML
+                    const blogPostHTML = `
+                        <div class="blog-post">
+                            <h2 class="blog-title">${blogPostData.title}</h2>
+                            <p class="blog-author">Author: ${blogPostData.author}</p>
+                            <p class="blog-date">Date: ${blogPostData.date}</p>
+                            <div class="blog-content">${blogPostData.content}</div>
+                        </div>
+                    `;
+
+                    // Append the blog post HTML to the container
+                    blogPostsContainer.innerHTML += blogPostHTML;
+                }
+            }
+        }
+
+        // Call the function to display all blog posts when the page loads
+        window.onload = displayBlogPosts;
+    </script>
+</body>
+</html>

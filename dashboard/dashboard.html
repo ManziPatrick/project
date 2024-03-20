@@ -20,12 +20,15 @@
     <link rel="stylesheet" href="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
     <!-- Custom CSS -->
     <link href="css/style.min.css" rel="stylesheet">
+    <style>
+         .hidden {
+        display: none;
+    }
+    </style>
 </head>
 
 <body>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
+   
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
@@ -275,9 +278,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- Recent Appointment -->
-                <!-- ============================================================== -->
+                
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
@@ -306,56 +307,15 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Elite admin</td>
-                                            <td>munyeshurimanzi@gmail.com</td>
-                                            <td class="txt-oflo">0790706170</td>
+                                            <td></td>
+                                            <td class="txt-oflo"></td>
+                                            <td></td>
+                                            <td class="txt-oflo"></td>
                                             <td>
                                                 <span class="text-success" onclick="showPopup(this)"></span>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="txt-oflo">Real Homes WP Theme</td>
-                                            <td>munyeshurimanzi@gmail.com</td>
-                                            <td class="txt-oflo">0790706170</td>
-                                            <td><span class="text-info"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="txt-oflo">cyberopsnetworks Admin</td>
-                                            <td>munyeshurimanzi@gmail.com</td>
-                                            <td class="txt-oflo">0790706170</td>
-                                            <td><span class="text-info"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td class="txt-oflo">Medical Pro WP Theme</td>
-                                            <td>munyeshurimanzi@gmail.com</td>
-                                            <td class="txt-oflo">0790706170</td>
-                                            <td><span class="text-danger"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td class="txt-oflo">Hosting press html</td>
-                                            <td>munyeshurimanzi@gmail.com</td>
-                                            <td class="txt-oflo">0790706170</td>
-                                            <td><span class="text-success"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td class="txt-oflo">Digital Agency PSD</td>
-                                            <td>munyeshurimanzi@gmail.com</td>
-                                            <td class="txt-oflo">0790706170</td>
-                                            <td><span class="text-danger"></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td class="txt-oflo">Helping Hands WP Theme</td>
-                                            <td>munyeshurimanzi@gmail.com</td>
-                                            <td class="txt-oflo">0790706170</td>
-                                            <td><span class="text-success"></span></td>
-                                        </tr>
+                                       
                                     </tbody>
                                 </table>
                                 <div class="popup" id="popup">
@@ -408,13 +368,13 @@
                                 <div class="d-flex flex-row comment-row p-3">
                                     <div class="p-2"><img src="plugins/images/users/ritesh.jpg" alt="user" width="50" class="rounded-circle"></div>
                                     <div class="comment-text ps-2 ps-md-3 w-100">
-                                        <h5 class="font-medium">Johnathan Doeting</h5>
-                                        <span class="mb-3 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry.It has survived not only five centuries. </span>
+                                        <h5 class="font-medium" id="commentAuthor"></h5>
+                                        <span class="mb-3 d-block" id="commentContent"></span>
+                                
                                         <div class="comment-footer d-md-flex align-items-center">
-
-                                            
-                                            
-                                            <div class="text-muted fs-2 ms-auto mt-2 mt-md-0">April 14, 2021</div>
+                                            <button onclick="togglePhoneNumber()" id="callButton">Call</button>
+                                            <span class="hidden" id="phoneNumber"></span>
+                                            <div class="text-muted fs-2 ms-auto mt-2 mt-md-0" id="commentDate"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -498,10 +458,10 @@
                                     </li>
                                     <li>
                                         <div class="call-chat">
-                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button" onclick="showName('Varun Dhavan')">
                                                 <i class="fas fa-phone"></i>
                                             </button>
-                                            <button class="btn btn-info btn-circle btn" type="button">
+                                            <button class="btn btn-info btn-circle btn" type="button" onclick="hideEmail('varun@example.com')">
                                                 <i class="far fa-comments text-white"></i>
                                             </button>
                                         </div>
@@ -516,10 +476,10 @@
                                     </li>
                                     <li>
                                         <div class="call-chat">
-                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button" onclick="showName('Varun Dhavan')">
                                                 <i class="fas fa-phone"></i>
                                             </button>
-                                            <button class="btn btn-info btn-circle btn" type="button">
+                                            <button class="btn btn-info btn-circle btn" type="button" onclick="hideEmail('varun@example.com')">
                                                 <i class="far fa-comments text-white"></i>
                                             </button>
                                         </div>
@@ -574,9 +534,11 @@
     <script src="js/custom.js"></script>
     <!--This page JavaScript -->
     <!--chartis chart-->
+    <script src="/js/appointment.js"></script>
     <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
     <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="js/pages/dashboards/dashboard1.js"></script>
+    <script src="/js/contact.js"></script>
     <script>
         function showPopup(element) {
             var fullText = "Livecore.cz - website for soccer fans! Here you can find games that are being played today, as well as all major league game scores from around the world! Gamble Responsibly. Gambling Therapy. 18+"
