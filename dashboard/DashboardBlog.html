@@ -18,60 +18,45 @@
   <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-<!-- Custom CSS -->
+
    <link href="css/style.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="blog.css">
+   
    
   
-
-<!-- Include Font Awesome CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="blog.css">
 </head>
 
 <body>
-    <!-- ============================================================== -->
+   
     <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
+   
     <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
+
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
+
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin6">
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
+
                     <a class="navbar-brand" href="dashboard.html">
-                        <!-- Logo icon -->
-                        <b class="logo-icon">
-                            <!-- Dark Logo icon -->
-                           <img src="../images/CyberOps-White.svg" alt="" width="64px" height="64px">
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                            <!-- dark Logo text -->
+                        
+                        <b class="logo-icon" >
                             
-                        </span>
+                           <img src="../images/CyberOps-White.svg" alt="" width="100%" height="100%">
+                        </b>
                     </a>
                    
                     <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
                         href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                 </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
+
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
                     <ul class="navbar-nav d-none d-md-block d-lg-none">
                         <li class="nav-item">
@@ -79,14 +64,9 @@
                                 href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
                         </li>
                     </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
+
                     <ul class="navbar-nav ms-auto d-flex align-items-center">
 
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
                         <li class=" in">
                             <form role="search" class="app-search d-none d-md-block me-3">
                                 <input type="text" placeholder="Search..." class="form-control mt-0">
@@ -98,7 +78,7 @@
                         
                         <li>
                             <a class="profile-pic" href="#">
-                                <img src="plugins/images/users/varun.jpg" alt="user-img" width="36"
+                                <img src="plugins/images/users/varun.jpg" alt="user-img"
                                     class="img-circle"><span class="text-white font-medium">Steave</span></a>
                         </li>
                      
@@ -108,12 +88,12 @@
         </header>
         
         <aside class="left-sidebar" data-sidebarbg="skin6">
-            <!-- Sidebar scroll-->
+         
             <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
+          
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <!-- User Profile-->
+                       
                         <li class="sidebar-item pt-2">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
                                 aria-expanded="false">
@@ -129,19 +109,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="basic-table.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashbordUsers.html"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Basic Table</span>
+                                <span class="hide-menu">Users</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fontawesome.html"
-                                aria-expanded="false">
-                                <i class="fa fa-font" aria-hidden="true"></i>
-                                <span class="hide-menu">Icon</span>
-                            </a>
-                        </li>
+                        
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="map-google.html"
                                 aria-expanded="false">
@@ -150,19 +124,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="blank.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashboardBlog.html"
                                 aria-expanded="false">
                                 <i class="fa fa-columns" aria-hidden="true"></i>
-                                <span class="hide-menu">Blank Page</span>
+                                <span class="hide-menu">Blog</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="404.html"
-                                aria-expanded="false">
-                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                <span class="hide-menu">Error 404</span>
-                            </a>
-                        </li>
+                       
                       
                     </ul>
 
@@ -171,11 +139,12 @@
             </div>
             <!-- End Sidebar scroll-->
         </aside>
+
         <div class="page-wrapper" style="min-height: 250px;">
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Blank Page</h4>
+                        <h4 class="page-title">Blog</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -186,13 +155,13 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.col-lg-12 -->
+                
             </div>
          
             <div class="container-fluid">
               
                 <div class="row">
-                   <!-- Existing Content ... -->
+                 
 
 <div class="col-md-12">
     
@@ -203,11 +172,25 @@
             <span onclick="closeForm()" class="close-button">&times;</span>
        
                            <form id="blogForm" class="fixed-form" …>
+                            <div class="forms-data">
+                            <div>
                         <label for="editor">title</label>
                         <input type="text" id="title">
+                                </div>
+                                <div>
+                        <label for="editor">Author</label>
+                        <input type="text" id="title">
+
+                    </div>
+                    <div>
+                        <label for="image">Image URL:</label>
+                        <input type="text" id="image" name="image" placeholder="Enter image URL">
+                    </div>
+                </div>
                         <input id="x" type="hidden" name="content">
                         <label for="editor">Blog Content:</label>
-                        <trix-editor input="x"  id="editor" name="editor" required></trix-editor>
+                        <trix-editor input="x" id="editor" name="editor" required style="max-height: 200px; overflow-y: auto;"></trix-editor>
+                      
                        
                      
                       
@@ -220,7 +203,6 @@
         </form>  
         <div>
            
-            
                       </div>
               
 
@@ -256,6 +238,7 @@
         </div>
     </div>
     <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/app-style-switcher.js"></script>
