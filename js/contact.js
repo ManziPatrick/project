@@ -2,10 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var form = document.querySelector('.wpcf7-form');
 
     form.addEventListener('submit', function(event) {
-        // Prevent the default form submission
+       
         event.preventDefault();
 
-        // Get form data
         var formData = {};
         var formElements = form.elements;
 
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Save form data to localStorage
+        
         localStorage.setItem('formData', JSON.stringify(formData));
 
        
@@ -54,7 +53,6 @@ var commentData = {
     date: 'April 14, 2021'
 };
 
-
 function setCommentData(data) {
     document.getElementById('commentAuthor').textContent = data.author;
     document.getElementById('commentContent').textContent = data.content;
@@ -75,18 +73,12 @@ function togglePhoneNumber() {
     }
 }
 
+function redirectToPhoneCall(phoneNumber) {
+    window.location.href = "tel:" + phoneNumber;
+}
+
+function redirectToEmail(email) {
+    window.location.href = "mailto:" + email;
+}
 
 setCommentData(commentData);
-
-function showName(button) {
-    var name = button.closest('li').getAttribute('data-name');
-    alert('Call ' + name);
-}
-
-function hideEmail(button) {
-    var email = button.closest('li').getAttribute('data-email');
-    var confirmation = confirm('Redirect to send email to ' + email + '?');
-    if (confirmation) {
-        window.location.href = 'mailto:' + email;
-    }
-}

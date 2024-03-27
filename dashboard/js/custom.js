@@ -196,7 +196,10 @@ function uploadFile(file) {
 
 
 
-async function displayBlogPosts() {
+const postsPerPage = 5;
+let currentPage = 1;
+
+async function displayBlogPosts(pageNumber) {
     try {
         const response = await fetch('https://cyberopsrw.cyclic.app/api/v1/post/getAllPosts');
         if (!response.ok) {
@@ -204,11 +207,14 @@ async function displayBlogPosts() {
         }
         const allPosts = await response.json();
 
-        const blogTableBody = document.getElementById('blogTableBody');
+        const startIndex = (pageNumber - 1) * postsPerPage;
+        const endIndex = startIndex + postsPerPage;
+        const paginatedPosts = allPosts.slice(startIndex, endIndex);
 
+        const blogTableBody = document.getElementById('blogTableBody');
         blogTableBody.innerHTML = '';
 
-        allPosts.forEach((post, index) => {
+        paginatedPosts.forEach((post, index) => {
             const row = blogTableBody.insertRow();
             const cell1 = row.insertCell(0);
             const cell2 = row.insertCell(1);
@@ -216,8 +222,7 @@ async function displayBlogPosts() {
             const cell4 = row.insertCell(3);
             const cell5 = row.insertCell(4);
 
-
-            cell1.textContent = index + 1;
+            cell1.textContent = startIndex + index + 1;
             cell2.textContent = post.title || 'N/A';
 
             const tempElement = document.createElement('div');
@@ -225,37 +230,84 @@ async function displayBlogPosts() {
 
             const imgElement = tempElement.querySelector('img');
 
-            // Check if an image element exists
             if (imgElement) {
-              
                 const clonedImg = imgElement.cloneNode(true);
                 cell3.appendChild(clonedImg);
             } else {
-              
                 cell3.innerHTML = post.body.substring(0, 20) + '...' || 'N/A';
             }
 
             cell4.innerHTML = `<img src="${post.image}" alt="Blog Image" style="max-width: 100px; max-height: 100px;">`;
-            
+
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
             editButton.classList.add('btn', 'btn-primary', 'btn-sm');
             editButton.addEventListener('click', () => openEditForm(post.id)); // Assuming there's an id property in your post object
 
-           
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
             deleteButton.addEventListener('click', () => deletePost(post.id)); // Assuming there's an id property in your post object
 
-            
             cell5.appendChild(editButton);
             cell5.appendChild(deleteButton);
         });
+
+        addPaginationButtons(allPosts.length);
     } catch (error) {
         console.error('Error fetching blog posts:', error);
     }
 }
+
+function addPaginationButtons(totalPosts) {
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
+    const paginationContainer = document.getElementById('paginationContainer');
+    paginationContainer.innerHTML = '';
+
+    const maxButtons = 3; 
+    const gap = 1; 
+
+    let startButton = currentPage - gap;
+    let endButton = currentPage + gap;
+
+    if (startButton < 1) {
+        startButton = 1;
+        endButton = Math.min(totalPages, maxButtons);
+    }
+
+    if (endButton > totalPages) {
+        endButton = totalPages;
+        startButton = Math.max(1, endButton - maxButtons + 1);
+    }
+
+    for (let i = startButton; i <= endButton; i++) {
+        const button = document.createElement('button');
+        button.textContent = i;
+        button.addEventListener('click', () => {
+            currentPage = i;
+            displayBlogPosts(currentPage);
+        });
+        paginationContainer.appendChild(button);
+    }
+
+    if (startButton > 1) {
+        const gapButton = document.createElement('span');
+        gapButton.textContent = '...';
+        paginationContainer.insertBefore(gapButton, paginationContainer.firstChild);
+    }
+
+    if (endButton < totalPages) {
+        const gapButton = document.createElement('span');
+        gapButton.textContent = '...';
+        paginationContainer.appendChild(gapButton);
+    }
+}
+
+
+window.addEventListener('load', () => {
+    displayBlogPosts(currentPage);
+});
+
 
 
 

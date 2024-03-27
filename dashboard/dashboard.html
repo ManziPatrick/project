@@ -160,11 +160,6 @@
             <!-- End Sidebar scroll-->
         </aside>
       
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-      
-      
-        <!-- Page wrapper  -->
-      
         <div class="page-wrapper">
           
             <!-- Bread crumb and right sidebar toggle -->
@@ -186,10 +181,6 @@
                 <!-- /.col-lg-12 -->
             </div>
           
-            <!-- End Bread crumb and right sidebar toggle -->
-          
-          
-            <!-- Container fluid  -->
           
             <div class="container-fluid">
               
@@ -267,7 +258,11 @@
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="white-box">
                             <div class="d-md-flex mb-3">
-                                <h3 class="box-title mb-0">Recent Appointment</h3>
+                                <!-- <h3 class="box-title mb-0">Recent Appointment</h3> -->
+                                <div id="toggleButtons">
+                                    <button id="appointmentsButton" onclick="displayAppointments()">Recent Appointments</button>
+                                    <button id="messagesButton" onclick="displayContactMessages()">Contact Messages</button>
+                                </div>
                                 <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
                                     <select class="form-select shadow-none row border-top">
                                         <option>March 2021</option>
@@ -289,24 +284,14 @@
                                             <th class="border-top-0">Message</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td class="txt-oflo"></td>
-                                            <td></td>
-                                            <td class="txt-oflo"></td>
-                                            <td>
-                                                <span class="text-success" onclick="showPopup(this)"></span>
-                                            </td>
-                                        </tr>
-                                       
+                                    <tbody id="tableBody">
+                                        
                                     </tbody>
                                 </table>
-                                <div class="popup" id="popup">
-                                    <p id="popupContent"></p>
-                                    <button onclick="hidePopup()">Close</button>
-                                </div>
+                                <div id="paginationContainer"></div>
+                                
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -355,11 +340,7 @@
                                         <h5 class="font-medium" id="commentAuthor"></h5>
                                         <span class="mb-3 d-block" id="commentContent"></span>
                                 
-                                        <div class="comment-footer d-md-flex align-items-center">
-                                            <button onclick="togglePhoneNumber()" id="callButton">Call</button>
-                                            <span class="hidden" id="phoneNumber"></span>
-                                            <div class="text-muted fs-2 ms-auto mt-2 mt-md-0" id="commentDate"></div>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -374,13 +355,14 @@
                                 <ul class="chatonline">
                                     <li>
                                         <div class="call-chat">
-                                            <button class="btn btn-success text-white btn-circle btn" type="button">
+                                            <button class="btn btn-success text-white btn-circle btn" type="button" onclick="showPhoneNumber('Genelia Deshmukh', '987-654-3210')">
                                                 <i class="fas fa-phone"></i>
                                             </button>
-                                            <button class="btn btn-info btn-circle btn" type="button">
+                                            <button class="btn btn-info btn-circle btn" type="button" onclick="redirectToEmail('munyeshurimanzi@gmail.com')">
                                                 <i class="far fa-comments text-white"></i>
                                             </button>
                                         </div>
+
                                         <a href="javascript:void(0)" class="d-flex align-items-center"><img
                                                 src="plugins/images/users/varun.jpg" alt="user-img" class="img-circle">
                                             <div class="ms-2">
@@ -483,16 +465,10 @@
                 </div>
             </div>
           
-            <!-- End Container fluid  -->
-          
-          
-            <!-- footer -->
-          
             <footer class="footer text-center"> 2021 © cyberopsnetworks Admin brought to you by <a
                     href="https://www.//">/</a>
             </footer>
           
-            <!-- End footer -->
           
         </div>
       
@@ -516,8 +492,7 @@
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
-    <!--This page JavaScript -->
-    <!--chartis chart-->
+    
     <script src="/js/appointment.js"></script>
     <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
     <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
