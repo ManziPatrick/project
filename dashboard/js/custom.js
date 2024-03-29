@@ -326,10 +326,19 @@ async function openEditForm(postId) {
 }
 
 function savePost() {
-    // Update these lines according to your HTML structure
-    var title = document.getElementById('title').value;
-    var content = document.getElementById('editor').value;
-    var postId = document.getElementById('postId').value; // Retrieve postId from hidden input
+    
+    var titleElement = document.getElementById('title');
+    var editorElement = document.getElementById('editor');
+    
+
+    if (!titleElement || !editorElement) {
+        console.error('One or more elements not found.');
+        return;
+    }
+
+    var title = titleElement.value;
+    var content = editorElement.value;
+    
 
     if (title.trim() === '' || content.trim() === '') {
         alert('Please provide both title and content.');
@@ -342,11 +351,7 @@ function savePost() {
         let url = 'https://cyberopsrw.cyclic.app/api/v1/post/createPost';
         let method = 'POST';
 
-        if (postId) {
-            url = `https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`;
-            method = 'PUT';
-        }
-
+      
         fetch(url, {
             method: method,
             headers: {
@@ -373,45 +378,6 @@ function savePost() {
 
 
 
-function savePost() {
-    var title = document.getElementById('title').value;
-    var content = document.getElementById('editor').value;
-    var postId = document.getElementById('postId').value; // Retrieve postId from hidden input
 
-    if (title.trim() === '' || content.trim() === '') {
-        alert('Please provide both title and content.');
-    } else {
-        const postData = {
-            title: title,
-            body: content
-        };
 
-        let url = 'https://cyberopsrw.cyclic.app/api/v1/post/createPost';
-        let method = 'POST';
 
-        if (postId) {
-            url = `https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`;
-            method = 'PUT';
-        }
-
-        fetch(url, {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Response:', data);
-            closeForm();
-           
-            currentPage = 1; 
-            displayBlogPosts(currentPage);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to save post. Please try again later.');
-        });
-    }
-}

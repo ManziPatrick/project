@@ -1,5 +1,5 @@
 function displayBlogPostData() {
-    // Retrieve the ID from the query parameters
+   
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
