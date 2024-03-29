@@ -179,6 +179,7 @@ async function displayBlogPosts(pageNumber) {
         }
         const allPosts = await response.json();
         console.log("hhhhhh",allPosts)
+        closeForm()
 
         const startIndex = (pageNumber - 1) * postsPerPage;
         const endIndex = startIndex + postsPerPage;
