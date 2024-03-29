@@ -1,9 +1,15 @@
 function displayBlogPostData() {
-   
+    const titleElement = document.querySelector('.entry-title');
+    const contentElement = document.querySelector('.entry-content');
+    const authorElement = document.querySelector('.author');
+    const dateElement = document.querySelector('.date');
+    const viewsCountElement = document.querySelector('.post-views-count');
+const headerBlog = document.querySelector(".headBlog")
+const titleBlog = document.querySelector("title")
+title
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
-    
     fetch(`https://cyberopsrw.cyclic.app/api/v1/post/getPostById/${postId}`)
         .then(response => {
             if (!response.ok) {
@@ -12,21 +18,31 @@ function displayBlogPostData() {
             return response.json();
         })
         .then(postData => {
-            console.log("hhhhhhhhc",postData );
-            console.clear();
-            
-            if (postData) {
-                document.querySelector('.entry-title').textContent = postData.title;
-                document.querySelector('.entry-content').textContent = postData.content;
-                document.querySelector('.author').textContent = 'Author: ' + postData.author;
-                document.querySelector('.date').textContent = 'Date: ' + postData.date;
-                document.querySelector('.post-views-count').textContent = postData.views;
+            console.log("hhhhhhhhc", postData);
+           
+
+            if (titleElement && contentElement && authorElement && dateElement && viewsCountElement) {
+                titleElement.textContent = postData.title;
+                contentElement.innerHTML = postData.body;
+                authorElement.textContent = 'Author: ' + postData.author;
+                const createdAtString = postData.createdAt;
+                const createdAtDate = new Date(createdAtString);
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                const formattedCreatedAt = createdAtDate.toLocaleDateString('en-US', options);
+                dateElement.textContent = 'Date: ' + formattedCreatedAt;
+                viewsCountElement.textContent = postData.views;
+                headerBlog.textContent=postData.title;
+                titleBlog.textContent=postData.title
             } else {
-                console.log('No blog post data found.');
+                console.log('One or more elements not found.');
             }
+          
         })
-        .catch(error => console.error('Error fetching post data:', error));
+        .catch(error => console.error('Error fetching post data:', error) );
+        
+  
+       
+  
 }
-
-
+ 
 displayBlogPostData();

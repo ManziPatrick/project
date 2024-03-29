@@ -299,8 +299,7 @@ window.addEventListener('load', () => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // You need to provide a postId when calling openEditForm
-    // For now, let's use a sample postId
+   
     openEditForm('65f132b8270b5f025159f5a9');
 });
 
@@ -314,8 +313,7 @@ async function openEditForm(postId) {
         }
         const editedPost = await response.json();
 
-        // Populate the form fields with the fetched post data
-        // Update these lines according to your HTML structure
+       
         document.getElementById('author').value = editedPost.author || '';
         document.getElementById('blogName').value = editedPost.blogName || '';
         document.getElementById('editor').value = editedPost.content || '';

@@ -25,7 +25,7 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/post/getAllPosts')
                     <div class="card-body">
                         <h2 class="card-title">${post.title}</h2>
                         <p class="card-meta">Posted by ${post.author} on ${formattedCreatedAt}</p>
-                        <p>${post.body}</p>
+                        
                     </div>
                 </div>
             `;
