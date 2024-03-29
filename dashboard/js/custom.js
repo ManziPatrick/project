@@ -2,7 +2,6 @@ $(function() {
     "use strict";
 
     $(".preloader").fadeOut();
-    // this is for close icon when navigation open in mobile view
     $(".nav-toggler").on('click', function() {
         $("#main-wrapper").toggleClass("show-sidebar");
         $(".nav-toggler i").toggleClass("ti-menu");
@@ -92,37 +91,6 @@ function closeForm() {
 
 
 
-function savePost() {
-    
-    var title = document.getElementById('title').value;
-    var content = document.getElementById('editor').value;
-
-    if (title.trim() === '' || content.trim() === '') {
-        alert('Please provide both title and content.');
-    } else {
-     
-
-    console.log('Post Data:', postData);
-    localStorage.setItem('Post Data:', JSON.stringify(postData));
-    closeForm()
-    fetch('https://cyberopsrw.cyclic.app/api/v1/post/createPost', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-          
-        },
-        body: JSON.stringify(postData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        
-        console.log('Response:', data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-}
-}
 
 
 document.getElementById('blogForm').addEventListener('submit', savePost);
@@ -131,6 +99,9 @@ document.getElementById('blogForm').addEventListener('submit', savePost);
 
 function deletePost(postId) {
     if (confirm('Are you sure you want to delete this post?')) {
+        
+        alert(`Deleting post with ID: ${postId}`);
+        
         fetch(`https://cyberopsrw.cyclic.app/api/v1/post/deletePost/${postId}`, {
             method: 'DELETE'
         })
@@ -148,6 +119,7 @@ function deletePost(postId) {
         });
     }
 }
+
 
 document.addEventListener('trix-before-paste', async function (e) {
     if (e.paste.hasOwnProperty('html')) {
@@ -206,6 +178,7 @@ async function displayBlogPosts(pageNumber) {
             throw new Error('Failed to fetch blog posts');
         }
         const allPosts = await response.json();
+        console.log("hhhhhh",allPosts)
 
         const startIndex = (pageNumber - 1) * postsPerPage;
         const endIndex = startIndex + postsPerPage;
@@ -223,7 +196,7 @@ async function displayBlogPosts(pageNumber) {
             const cell5 = row.insertCell(4);
 
             cell1.textContent = startIndex + index + 1;
-            cell2.textContent = post.title || 'N/A';
+            cell2.textContent = post.title || 'N/A' ;
 
             const tempElement = document.createElement('div');
             tempElement.innerHTML = post.body || '';
@@ -237,20 +210,22 @@ async function displayBlogPosts(pageNumber) {
                 cell3.innerHTML = post.body.substring(0, 20) + '...' || 'N/A';
             }
 
+
             cell4.innerHTML = `<img src="${post.image}" alt="Blog Image" style="max-width: 100px; max-height: 100px;">`;
 
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
             editButton.classList.add('btn', 'btn-primary', 'btn-sm');
-            editButton.addEventListener('click', () => openEditForm(post.id)); // Assuming there's an id property in your post object
+            editButton.addEventListener('click', () => openEditForm(post._id)); // Pass post object to openForm
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
             deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
-            deleteButton.addEventListener('click', () => deletePost(post.id)); // Assuming there's an id property in your post object
+            deleteButton.addEventListener('click', () => deletePost(post._id));
 
             cell5.appendChild(editButton);
             cell5.appendChild(deleteButton);
+            
         });
 
         addPaginationButtons(allPosts.length);
@@ -264,7 +239,7 @@ function addPaginationButtons(totalPosts) {
     const paginationContainer = document.getElementById('paginationContainer');
     paginationContainer.innerHTML = '';
 
-    const maxButtons = 3; 
+    const maxButtons = 4; 
     const gap = 1; 
 
     let startButton = currentPage - gap;
@@ -280,9 +255,23 @@ function addPaginationButtons(totalPosts) {
         startButton = Math.max(1, endButton - maxButtons + 1);
     }
 
+    // Add previous arrow if not on first page
+    if (currentPage > 1) {
+        const prevButton = document.createElement('button');
+        prevButton.textContent = '<';
+        prevButton.addEventListener('click', () => {
+            currentPage--;
+            displayBlogPosts(currentPage);
+        });
+        paginationContainer.appendChild(prevButton);
+    }
+
     for (let i = startButton; i <= endButton; i++) {
         const button = document.createElement('button');
         button.textContent = i;
+        if (i === currentPage) {
+            button.classList.add('active');
+        }
         button.addEventListener('click', () => {
             currentPage = i;
             displayBlogPosts(currentPage);
@@ -290,34 +279,139 @@ function addPaginationButtons(totalPosts) {
         paginationContainer.appendChild(button);
     }
 
-    if (startButton > 1) {
-        const gapButton = document.createElement('span');
-        gapButton.textContent = '...';
-        paginationContainer.insertBefore(gapButton, paginationContainer.firstChild);
-    }
-
-    if (endButton < totalPages) {
-        const gapButton = document.createElement('span');
-        gapButton.textContent = '...';
-        paginationContainer.appendChild(gapButton);
+    // Add next arrow if not on last page
+    if (currentPage < totalPages) {
+        const nextButton = document.createElement('button');
+        nextButton.textContent = '>';
+        nextButton.addEventListener('click', () => {
+            currentPage++;
+            displayBlogPosts(currentPage);
+        });
+        paginationContainer.appendChild(nextButton);
     }
 }
+
+
 
 
 window.addEventListener('load', () => {
     displayBlogPosts(currentPage);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // You need to provide a postId when calling openEditForm
+    // For now, let's use a sample postId
+    openEditForm('65f132b8270b5f025159f5a9');
+});
 
+async function openEditForm(postId) {
+    openForm();
 
+    try {
+        const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch post data');
+        }
+        const editedPost = await response.json();
 
-
-function getTagName(htmlContent) {
-    const tagMatch = htmlContent.match(/^<([a-z]+)/i);
-    return tagMatch ? tagMatch[1].toLowerCase() : 'div'; 
+        // Populate the form fields with the fetched post data
+        // Update these lines according to your HTML structure
+        document.getElementById('author').value = editedPost.author || '';
+        document.getElementById('blogName').value = editedPost.blogName || '';
+        document.getElementById('editor').value = editedPost.content || '';
+        document.getElementById('image').value = editedPost.image || '';
+    } catch (error) {
+        console.error('Error fetching post data:', error);
+    }
 }
 
-window.addEventListener('load', displayBlogPosts);
+function savePost() {
+    // Update these lines according to your HTML structure
+    var title = document.getElementById('title').value;
+    var content = document.getElementById('editor').value;
+    var postId = document.getElementById('postId').value; // Retrieve postId from hidden input
+
+    if (title.trim() === '' || content.trim() === '') {
+        alert('Please provide both title and content.');
+    } else {
+        const postData = {
+            title: title,
+            body: content
+        };
+
+        let url = 'https://cyberopsrw.cyclic.app/api/v1/post/createPost';
+        let method = 'POST';
+
+        if (postId) {
+            url = `https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`;
+            method = 'PUT';
+        }
+
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response:', data);
+            closeForm();
+           
+            currentPage = 1; 
+            displayBlogPosts(currentPage);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to save post. Please try again later.');
+        });
+    }
+}
 
 
 
+
+
+function savePost() {
+    var title = document.getElementById('title').value;
+    var content = document.getElementById('editor').value;
+    var postId = document.getElementById('postId').value; // Retrieve postId from hidden input
+
+    if (title.trim() === '' || content.trim() === '') {
+        alert('Please provide both title and content.');
+    } else {
+        const postData = {
+            title: title,
+            body: content
+        };
+
+        let url = 'https://cyberopsrw.cyclic.app/api/v1/post/createPost';
+        let method = 'POST';
+
+        if (postId) {
+            url = `https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`;
+            method = 'PUT';
+        }
+
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Response:', data);
+            closeForm();
+           
+            currentPage = 1; 
+            displayBlogPosts(currentPage);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to save post. Please try again later.');
+        });
+    }
+}

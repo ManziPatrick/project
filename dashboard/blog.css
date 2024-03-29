@@ -104,6 +104,7 @@ height: 100%;
 }
 
 table {
+    position: relative;
     width: 100%;
     
     border-collapse: collapse;
@@ -197,6 +198,11 @@ button:hover {
     cursor: pointer;
     font-size: 20px;
 }
+#paginationContainer{
+    display: flex;
+    gap: 10px;
+   
+}
 img{
     
     /* height: 20px; */
@@ -232,6 +238,12 @@ input[readonly] {
 .container {
   padding-top: 20px;
 }
+.active {
+    color: rgb(195, 195, 206);
+    font-weight: bold;
+    background-color: #1a237e;
+}
+
 @media (max-width: 768px) {
     .hide-menu {
         display: none;
