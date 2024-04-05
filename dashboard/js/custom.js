@@ -29,34 +29,15 @@
 
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var styledInput = document.querySelector('.styled-input');
-
-        function execCommand(command, value) {
-            document.execCommand(command, false, value);
-        }
-        window.insertImage = function() {
-            var imageUrl = prompt('Enter the URL of the image:');
-            if (imageUrl) {
-                execCommand('insertImage', imageUrl);
-            }
-        }
-
-        window.embedVideo = function() {
-            var videoUrl = prompt('Enter the URL of the video (YouTube, Vimeo, etc.):');
-            if (videoUrl) {
-                execCommand('insertHTML', `<iframe width="560" height="315" src="${videoUrl}" frameborder="0" allowfullscreen></iframe>`);
-            }
-        }
-
-       
-        window.changeTextColor = function() {
-            var color = prompt('Enter the color (name, hex, rgb):');
-            if (color) {
-                execCommand('foreColor', color);
-            }
-        }
-    });
+    function showLoader() {
+        console.log("Showing loader...");
+        $(".preloader").fadeIn();
+    }
+    
+    function hideLoader() {
+        console.log("Hiding loader...");
+        $(".preloader").fadeOut();
+    }
 
 
 
@@ -77,8 +58,13 @@
 
     function toggleForm() {
         const fixedForm = document.querySelector('.fixed-form');
-        fixedForm.style.display = fixedForm.style.display === 'none' ? 'block' : 'none';
+        if (fixedForm.style.display === 'block') {
+            fixedForm.style.display = 'none';
+        } else {
+            fixedForm.style.display = 'block';
+        }
     }
+    
     function openForm() {
         document.getElementById('formPopup').style.display = 'block';
     }
@@ -89,7 +75,9 @@
 
 
 
-
+    document.addEventListener('DOMContentLoaded', function() {
+        closeForm(); 
+    });
 
 
 
@@ -175,6 +163,7 @@
 
     async function displayBlogPosts(pageNumber) {
         try {
+            showLoader();
             const response = await fetch('https://cyberopsrw.cyclic.app/api/v1/post/getAllPosts');
             if (!response.ok) {
                 throw new Error('Failed to fetch blog posts');
@@ -234,8 +223,13 @@
             addPaginationButtons(allPosts.length);
         } catch (error) {
             console.error('Error fetching blog posts:', error);
+        }finally {
+            hideLoader();
         }
     }
+    window.addEventListener('load', () => {
+        displayBlogPosts(currentPage);
+    });
 
     function addPaginationButtons(totalPosts) {
         const totalPages = Math.ceil(totalPosts / postsPerPage);

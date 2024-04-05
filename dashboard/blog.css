@@ -42,8 +42,8 @@ trix-editor img {
 width: 30px;
   }
   .logo-icon img{
-width: 100%;
-height: 100%;
+width: 10%;
+height: 10%;
   }
 .edit-options {
     position: absolute;
@@ -75,7 +75,8 @@ height: 100%;
 
 .sidebar-nav {
     position: fixed;
-    margin-top: 20px;
+    margin-top: 40px;
+    
 }
 
 
@@ -106,7 +107,6 @@ height: 100%;
 table {
     position: relative;
     width: 100%;
-    
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -204,8 +204,7 @@ button:hover {
    
 }
 img{
-    
-    /* height: 20px; */
+
     object-fit: contain;
 }
 .btn-file {
