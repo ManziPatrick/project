@@ -23,6 +23,9 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/post/getAllPosts')
             card.innerHTML = `
                 <div>
                 <img src="${imageUrl}" alt="${post.title}">
+                <div class="category-tag">
+                        <li><a href="" rel="category tag">CyberSecurity</a></li>
+                    </div>
                     <div class="card-body">
                         <h2 class="card-title">${post.title}</h2>
                         <p class="card-meta">Posted by ${post.author} on ${formattedCreatedAt}</p>
