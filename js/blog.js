@@ -19,9 +19,10 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/post/getAllPosts')
             const createdAtDate = new Date(createdAtString);
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             const formattedCreatedAt = createdAtDate.toLocaleDateString('en-US', options);
+            const imageUrl = post.image ? post.image : "/images/11-penetration-testing-tools-the-pros-use.webp";
             card.innerHTML = `
                 <div>
-                    <img src="${post.image}" alt="${post.title}">
+                <img src="${imageUrl}" alt="${post.title}">
                     <div class="card-body">
                         <h2 class="card-title">${post.title}</h2>
                         <p class="card-meta">Posted by ${post.author} on ${formattedCreatedAt}</p>

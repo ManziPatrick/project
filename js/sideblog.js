@@ -14,14 +14,14 @@ function displayLatestBlogPosts() {
                 const recentPostContainer = recentPostWidget.querySelector('.single-widget-item');
                 recentPostContainer.innerHTML = ''; 
 
-                // Get only the latest five posts
                 posts.slice(0, 5).forEach(post => {
                     const postItem = document.createElement('div');
                     postItem.classList.add('recent-post-item');
 
                     const postImage = document.createElement('div');
                     postImage.classList.add('recent-post-image');
-                    postImage.innerHTML = `<a href="singleblogpage.html?id=${post._id}"><img width="80" height="80" src="${post.image}" class="attachment-cyber-recent-image size-cyber-recent-image wp-post-image" alt="" decoding="async"></a>`;
+                    const imageUrl = post.image ? post.image : '../images/11-penetration-testing-tools-the-pros-use-1024x683.webp';
+                    postImage.innerHTML = `<a href="singleblogpage.html?id=${post._id}"><img width="80" height="80" src="${imageUrl}" class="attachment-cyber-recent-image size-cyber-recent-image wp-post-image" alt="" decoding="async"></a>`;
                     
                     const postText = document.createElement('div');
                     postText.classList.add('recent-post-text');
@@ -40,25 +40,30 @@ function displayLatestBlogPosts() {
                 });
 
                
-                const nextPostLink = recentPostWidget.querySelector('.nav-next a');
-                const prevPostLink = recentPostWidget.querySelector('.nav-previous a');
-                
-                if (nextPostLink && prevPostLink) {
-                    nextPostLink.addEventListener('click', () => {
-                        const nextPostUrl = nextPostLink.getAttribute('href');
-                        window.location.href = nextPostUrl;
-                    });
-                    
-                    prevPostLink.addEventListener('click', () => {
-                        const prevPostUrl = prevPostLink.getAttribute('href');
-                        window.location.href = prevPostUrl;
-                    });
+                postItem.appendChild(postImage);
+                postItem.appendChild(postText);
+                recentPostContainer.appendChild(postItem);
+
+                if (nextPost) {
+                    const nextPostLink = document.createElement('a');
+                    nextPostLink.classList.add('next-post-link');
+                    nextPostLink.href = `singleblogpage.html?id=${nextPost._id}`;
+                    nextPostLink.textContent = 'Next Post';
+                    recentPostWidget.querySelector('.nav-next').appendChild(nextPostLink);
+                }
+
+                if (prevPost) {
+                    const prevPostLink = document.createElement('a');
+                    prevPostLink.classList.add('prev-post-link');
+                    prevPostLink.href = `singleblogpage.html?id=${prevPost._id}`;
+                    prevPostLink.textContent = 'Previous Post';
+                    recentPostWidget.querySelector('.nav-previous').appendChild(prevPostLink);
                 }
             } else {
                 console.log('Recent post widget not found.');
             }
         })
-        .catch(error => console.error('Error fetching blog posts:', error));
+       .catch(error => console.error('Error fetching blog posts:', error));
 }
 
 displayLatestBlogPosts();

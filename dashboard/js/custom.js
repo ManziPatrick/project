@@ -40,16 +40,42 @@
     }
 
 
+    document.getElementById('updateButton').style.display = 'none';
+    document.getElementById('saveButton').style.display = 'none';
 
 
 
+document.getElementById('saveButton').addEventListener('click', function() {
+  
+    const imageFile = document.getElementById('image').files[0];
+    
+    uploadFile(imageFile);
+});
 
-    function insertImage() {
-        const imageUrl = document.getElementById('image').value;
-        const editor = document.getElementById('editor');
-        const imageTag = `<img src="${imageUrl}" alt="Inserted Image">`;
-        editor.value += imageTag;
-    }
+function uploadFile(file) {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    fetch('https://cyberopsrw.cyclic.app/api/v1/user/uploadImage', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to upload image');
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById('uploadedImage').src = data.imageUrl;
+        alert('Image uploaded successfully');
+    })
+    .catch(error => {
+        console.error('Error uploading image:', error);
+    });
+}
+
+    
 
 
     
@@ -67,6 +93,8 @@
     
     function openForm() {
         document.getElementById('formPopup').style.display = 'block';
+        document.getElementById('updateButton').style.display = 'none';
+        document.getElementById('saveButton').style.display = 'inline-block';
     }
 
     function closeForm() {
@@ -136,24 +164,24 @@
 
     });
 
-    function uploadFile(file) {
-        var formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', 'your_upload_preset_name');
+    // function uploadFile(file) {
+    //     var formData = new FormData();
+    //     formData.append('file', file);
+    //     formData.append('upload_preset', 'your_upload_preset_name');
 
-        fetch('https://api.cloudinary.com/v1_1/daoqhvblq/image/upload', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Upload response:', data); 
-            const imageUrl = data.secure_url;
-        })
-        .catch(error => {
-            console.error('Error uploading file:', error);
-        });
-    }
+    //     fetch('https://api.cloudinary.com/v1_1/daoqhvblq/image/upload', {
+    //         method: 'POST',
+    //         body: formData
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         console.log('Upload response:', data); 
+    //         const imageUrl = data.secure_url;
+    //     })
+    //     .catch(error => {
+    //         console.error('Error uploading file:', error);
+    //     });
+    // }
 
 
 
@@ -252,7 +280,7 @@
             startButton = Math.max(1, endButton - maxButtons + 1);
         }
 
-        // Add previous arrow if not on first page
+        
         if (currentPage > 1) {
             const prevButton = document.createElement('button');
             prevButton.textContent = '<';
@@ -322,6 +350,8 @@
             document.getElementById('title').value = editedPost.title || '';
             document.getElementById('author').value = editedPost.author || '';
             document.getElementById('image').value = editedPost.image || '';
+            document.getElementById('updateButton').style.display = 'inline-block';
+            document.getElementById('saveButton').style.display = 'none';
     
             const editor = document.getElementById('editor').editor;
             if (editedPost.body) {
@@ -342,25 +372,21 @@
     
     async function updatePost() {
         try {
-
             const title = document.getElementById('title').value;
             const author = document.getElementById('author').value;
             const image = document.getElementById('image').value;
     
-           
             const postId = currentPostId;
     
             const editorContent = getEditorContent();
     
-          
             const postData = {
                 title: title,
-                author: author,
+                author: author, 
                 image: image,
                 body: editorContent 
             };
     
-          
             const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`, {
                 method: 'PUT',
                 headers: {
@@ -369,22 +395,20 @@
                 body: JSON.stringify(postData)
             });
     
-           
             if (!response.ok) {
                 throw new Error(`Failed to update post ${postId}`);
             }
     
             alert('Post updated successfully');
-    closeForm()
+            closeForm();
         } catch (error) {
-            
             console.error(error);
-            
             setTimeout(() => {
                 alert(`Error updating post ${currentPostId}: ${error.message}`);
-            }, 100); // Delay the alert to ensure it is displayed
+            }, 100);
         }
     }
+    
     
 
 
@@ -399,6 +423,7 @@
         
         var titleElement = document.getElementById('title');
         var editorElement = document.getElementById('editor');
+        const author = document.getElementById('author').value;
         
 
         if (!titleElement || !editorElement) {
@@ -415,6 +440,7 @@
         } else {
             const postData = {
                 title: title,
+                author: author,
                 body: content
             };
 

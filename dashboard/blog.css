@@ -62,9 +62,8 @@ height: 10%;
 }
 .left-sidebar {
     position: fixed;
-    
-    width: 220px;
-    background-color: #17171a; 
+    margin-top: 40px;
+   
     color: #fff;
 }
 
@@ -77,6 +76,10 @@ height: 10%;
     position: fixed;
     margin-top: 40px;
     
+}
+
+.topbar {
+   height: 70px;
 }
 
 
@@ -246,4 +249,9 @@ input[readonly] {
 @media (max-width: 768px) {
     .hide-menu {
         display: none;
-    }}
+    }
+    .forms-data{
+        display: block;
+        width: 100%;
+    }
+}
