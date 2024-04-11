@@ -1,4 +1,4 @@
-
+document.querySelector('.form-Popup').style.display = 'none';
     $(function() {
         "use strict";
 
