@@ -50,6 +50,10 @@ height: 10%;
     top: 5px;
     right: 5px;
 }
+.semi-blog{
+    display: flex;
+    justify-content: space-between;
+}
 
 .edit-options button {
     margin-left: 5px;

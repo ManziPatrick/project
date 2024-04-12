@@ -199,16 +199,23 @@ function uploadFile(file) {
                 throw new Error('Failed to fetch blog posts');
             }
             const allPosts = await response.json();
-            console.log("hhhhhh",allPosts)
+           
             closeForm()
-
+    
             const startIndex = (pageNumber - 1) * postsPerPage;
             const endIndex = startIndex + postsPerPage;
             const paginatedPosts = allPosts.slice(startIndex, endIndex);
-
+            
+            const totalCount = allPosts.length;
+            const rangeStart = startIndex + 1;
+            const rangeEnd = Math.min(endIndex, totalCount);
+    
+            const itemInfo = document.getElementById('itemInfo');
+            itemInfo.textContent = `Showing ${rangeStart}-${rangeEnd} of ${totalCount} items`;
+    
             const blogTableBody = document.getElementById('blogTableBody');
             blogTableBody.innerHTML = '';
-
+    
             paginatedPosts.forEach((post, index) => {
                 const row = blogTableBody.insertRow();
                 const cell1 = row.insertCell(0);
@@ -216,50 +223,51 @@ function uploadFile(file) {
                 const cell3 = row.insertCell(2);
                 const cell4 = row.insertCell(3);
                 const cell5 = row.insertCell(4);
-
+    
                 cell1.textContent = startIndex + index + 1;
                 cell2.textContent = post.title || 'N/A' ;
-
+    
                 const tempElement = document.createElement('div');
                 tempElement.innerHTML = post.body || '';
-
+    
                 const imgElement = tempElement.querySelector('img');
-
+    
                 if (imgElement) {
                     const clonedImg = imgElement.cloneNode(true);
                     cell3.appendChild(clonedImg);
                 } else {
                     cell3.innerHTML = post.body.substring(0, 20) + '...' || 'N/A';
                 }
-
-
+    
+    
                 cell4.innerHTML = `<img src="${post.image}" alt="Blog Image" style="max-width: 100px; max-height: 100px;">`;
-
+    
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
                 editButton.classList.add('btn', 'btn-primary', 'btn-sm');
-                editButton.addEventListener('click', () => openEditForm(post._id)); // Pass post object to openForm
-
+                editButton.addEventListener('click', () => openEditForm(post._id));
+    
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
                 deleteButton.addEventListener('click', () => deletePost(post._id));
-
+    
                 cell5.appendChild(editButton);
                 cell5.appendChild(deleteButton);
                 
             });
-
+    
             addPaginationButtons(allPosts.length);
         } catch (error) {
             console.error('Error fetching blog posts:', error);
-        }finally {
+        } finally {
             hideLoader();
         }
     }
     window.addEventListener('load', () => {
         displayBlogPosts(currentPage);
     });
+    
 
     function addPaginationButtons(totalPosts) {
         const totalPages = Math.ceil(totalPosts / postsPerPage);
@@ -379,6 +387,7 @@ function uploadFile(file) {
             const image = document.getElementById('image').value;
     
             const postId = currentPostId;
+           
     
             const editorContent = getEditorContent();
     
@@ -403,6 +412,7 @@ function uploadFile(file) {
     
             alert('Post updated successfully');
             closeForm();
+            displayBlogPosts( currentPage);
         } catch (error) {
             console.error(error);
             setTimeout(() => {
