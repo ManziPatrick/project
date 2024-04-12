@@ -132,7 +132,7 @@ function uploadFile(file) {
                 
                 console.log('Post deleted successfully');
                 
-                displayBlogPosts();
+                displayBlogPosts(currentPage);
             })
             .catch(error => {
                 console.error('Error deleting post:', error);
@@ -314,7 +314,6 @@ function uploadFile(file) {
             paginationContainer.appendChild(button);
         }
 
-        // Add next arrow if not on last page
         if (currentPage < totalPages) {
             const nextButton = document.createElement('button');
             nextButton.textContent = '>';
