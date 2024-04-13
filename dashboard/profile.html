@@ -165,24 +165,26 @@
               
               
                 <div class="row">
-                    <!-- Column -->
+                    
                     <div class="col-lg-4 col-xlg-3 col-md-12">
                         <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="user" src="plugins/images/large/img1.jpg">
+                            <div class="user-bg"> 
+                                <img class="profile-image" id="profileImage" width="100%" alt="user" src="plugins/images/large/img1.jpg">
                                 <div class="overlay-box">
                                     <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="plugins/images/users/genu.jpg"
-                                                class="thumb-lg img-circle" alt="img"></a>
+                                        <label for="profileImageInput" id="profileImageLabel">
+                                            <img src="plugins/images/users/genu.jpg" class="thumb-lg img-circle" alt="img">
+                                        </label>
+                                        <input type="file" id="profileImageInput" style="display: none;">
                                         <h4 class="text-white mt-2">User Name</h4>
-                                        <h5 class="text-white mt-2">info@myadmin.com</h5>
+                                        <h5 class="text-white mt-2" id="email-display">info@myadmin.com</h5>
                                     </div>
                                 </div>
                             </div>
-                        
                         </div>
                     </div>
-                    <!-- Column -->
-                    <!-- Column -->
+                    
+                    
                     <div class="col-lg-8 col-xlg-9 col-md-12">
                         <div class="card">
                             <div class="card-body">
@@ -191,7 +193,7 @@
                                         <label class="col-md-12 p-0">Full Name</label>
                                         <div class="col-md-12 border-bottom p-0">
                                             <input type="text" placeholder="Johnathan Doe"
-                                                class="form-control p-0 border-0"> </div>
+                                                class="form-control p-0 border-0" id="fullName" > </div>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="excyberopsnetworks-email" class="col-md-12 p-0">Email</label>
@@ -263,6 +265,7 @@
     <script src="js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
+    <script src="js/profile.js"></script>
 </body>
 
 </html>

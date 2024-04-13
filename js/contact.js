@@ -1,46 +1,43 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('.wpcf7-form');
+    var form = document.querySelector('.form-inner');
 
-    form.addEventListener('submit', function(event) {
-       
+    form.addEventListener('submit', async function(event) {
         event.preventDefault();
 
-        var formData = {};
-        var formElements = form.elements;
+        try {
 
-        for (var i = 0; i < formElements.length; i++) {
-            var field = formElements[i];
-            if (field.name) {
-                formData[field.name] = field.value;
-            }
-        }
+            var formData = {
+                Name: document.getElementById('nameInput').value,
+                Email: document.getElementById('emailInput').value,
+                Phone: document.getElementById('phoneInput').value,
+                Website: document.getElementById('websiteInput').value,
+                Message: document.getElementById('messageInput').value
+            };
 
-        
-        localStorage.setItem('formData', JSON.stringify(formData));
+     
+            const response = await fetch('https://cyberopsrw.cyclic.app/api/v1/post/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
 
-       
-        fetch('https://cyberopsrw.cyclic.app/api/v1/post/email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to send form data to the backend.');
             }
-        
+
+            const res = await response.json();
             alert('Form data has been sent to the backend successfully.');
-            
             form.reset();
-        })
-        .catch(error => {
+            return res;
+        } catch (error) {
             console.error('Error:', error);
-         
-        });
+            
+        }
     });
 });
+
 
 
 

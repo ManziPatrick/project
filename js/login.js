@@ -3,7 +3,7 @@ function signIn() {
     var email = emailInput.value.trim();
 
     if (email === '') {
-        showToast('Please enter a valid email address.', 'alert-danger');
+        // showToast('Please enter a valid email address.', 'alert-danger');
     } else {
         var formData = {
             email: email,
@@ -21,41 +21,22 @@ function signIn() {
             if (!response.ok) {
                 throw new Error('Login failed.');
             }
-            showToast('Login successful.', 'alert-success');
-            form.reset(); 
+            return response.json(); // Parse response body as JSON
+        })
+        .then(data => {
+            
+            localStorage.setItem('userID', data._id);
+
+            alert('Login successful.', 'alert-success');
             window.location.href = 'dashboard/dashboard.html';
+            form.reset(); 
+
         })
         .catch(error => {
             console.error('Error:', error);
-            showToast('Login failed. Please try again.', 'alert-danger');
+          
         });
     }
-}
-
-function showToast(message, className) {
-    var toastElement = document.createElement('div');
-    toastElement.classList.add('toast', className);
-    toastElement.setAttribute('role', 'alert');
-    toastElement.setAttribute('aria-live', 'assertive');
-    toastElement.setAttribute('aria-atomic', 'true');
-
-    var toastBody = document.createElement('div');
-    toastBody.classList.add('toast-body');
-    toastBody.textContent = message;
-
-    toastElement.appendChild(toastBody);
-    document.body.appendChild(toastElement);
-
-    var bootstrapToast = new bootstrap.Toast(toastElement);
-    bootstrapToast.show();
-
-    // Remove the toast after 3 seconds
-    setTimeout(function() {
-        bootstrapToast.hide();
-        setTimeout(function() {
-            toastElement.remove();
-        }, 200); // Delay for the fade transition
-    }, 3000);
 }
 
 var form = document.querySelector('#form');
