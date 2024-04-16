@@ -80,8 +80,8 @@ function updateProfile(userData) {
         return response.json();
     })
     .then(updatedUserData => {
-        // Show success message or perform any other actions
-        showToast('Profile updated successfully.', 'alert-success');
+       
+        alret('Profile updated successfully.', 'alert-success');
     })
     .catch(error => {
         console.error('Error:', error);
