@@ -54,7 +54,7 @@ function createPostItem(post) {
 
     const postImage = document.createElement('div');
     postImage.classList.add('recent-post-image');
-    const imageUrl = post.image ? post.image : '../images/11-penetration-testing-tools-the-pros-use-1024x683.webp';
+    const imageUrl = post.images[0] ? post.images[0] : '../images/11-penetration-testing-tools-the-pros-use-1024x683.webp';
     postImage.innerHTML = `<a href="singleblogpage.html?id=${post._id}"><img width="80" height="80" src="${imageUrl}" class="attachment-cyber-recent-image size-cyber-recent-image wp-post-image" alt="" decoding="async"></a>`;
     
     const postText = document.createElement('div');

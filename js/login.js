@@ -3,7 +3,7 @@ function signIn() {
     var email = emailInput.value.trim();
 
     if (email === '') {
-        // showToast('Please enter a valid email address.', 'alert-danger');
+      
     } else {
         var formData = {
             email: email,
@@ -21,13 +21,14 @@ function signIn() {
             if (!response.ok) {
                 throw new Error('Login failed.');
             }
-            return response.json(); // Parse response body as JSON
+            return response.json(); 
         })
         .then(data => {
             
+            localStorage.setItem('token', data.token);
             localStorage.setItem('userID', data._id);
 
-            alert('Login successful.', 'alert-success');
+            alert('Login successful.');
             window.location.href = 'dashboard/dashboard.html';
             form.reset(); 
 
@@ -46,3 +47,17 @@ form.addEventListener('submit', function (event) {
 
     signIn();
 });
+
+
+// function getUserInfoFromToken() {
+
+//     var token = localStorage.getItem('token');
+
+//     var userInfo = {
+//         name: "John Doe" 
+//     };
+
+//     return userInfo;
+// }
+// var userInfo = getUserInfoFromToken();
+// document.getElementById('Username').innerText = userInfo.name;

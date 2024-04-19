@@ -25,6 +25,9 @@ title
                 titleElement.textContent = postData.title;
                 contentElement.innerHTML = postData.body;
                 authorElement.textContent = 'Author: ' + postData.author;
+                const imageUrl = postData.images[0] ? postData.images[0] : '../images/11-penetration-testing-tools-the-pros-use-1024x683.webp';
+                const imageElement = document.getElementById('post-image');
+                imageElement.src = imageUrl;
                 const createdAtString = postData.createdAt;
                 const createdAtDate = new Date(createdAtString);
                 const options = { year: 'numeric', month: 'long', day: 'numeric' };

@@ -47,35 +47,8 @@
 
 
 
-document.getElementById('saveButton').addEventListener('click', function() {
-  
-    const imageFile = document.getElementById('image').files[0];
-    
-    uploadFile(imageFile);
-});
 
-function uploadFile(file) {
-    const formData = new FormData();
-    formData.append('image', file);
 
-    fetch('https://cyberopsrw.cyclic.app/api/v1/user/uploadImage', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to upload image');
-        }
-        return response.json();
-    })
-    .then(data => {
-        document.getElementById('uploadedImage').src = data.imageUrl;
-        alert('Image uploaded successfully');
-    })
-    .catch(error => {
-        console.error('Error uploading image:', error);
-    });
-}
 
     
 
@@ -166,24 +139,7 @@ function uploadFile(file) {
 
     });
 
-    // function uploadFile(file) {
-    //     var formData = new FormData();
-    //     formData.append('file', file);
-    //     formData.append('upload_preset', 'your_upload_preset_name');
-
-    //     fetch('https://api.cloudinary.com/v1_1/daoqhvblq/image/upload', {
-    //         method: 'POST',
-    //         body: formData
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log('Upload response:', data); 
-    //         const imageUrl = data.secure_url;
-    //     })
-    //     .catch(error => {
-    //         console.error('Error uploading file:', error);
-    //     });
-    // }
+  
 
 
 
@@ -240,7 +196,7 @@ function uploadFile(file) {
                 }
     
     
-                cell4.innerHTML = `<img src="${post.image}" alt="Blog Image" style="max-width: 100px; max-height: 100px;">`;
+                cell4.innerHTML = `<img src="${post.images[0]}" alt="Blog Image" style="max-width: 100px; max-height: 100px;">`;
     
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
@@ -379,106 +335,79 @@ function uploadFile(file) {
         return editor.value;
     }
     
-    async function updatePost() {
+
+
+    async function savePost() {
+        const authorName = document.getElementById('author').value;
+        const blogName = document.getElementById('title').value;
+        const blogContent = document.getElementById('editor').value;
+        const imageFileInput = document.getElementById('image');
+        const imageFile = imageFileInput.files[0];
+    
+        if (!authorName || !blogName || !blogContent || !imageFile) {
+            console.error('Please fill in all required fields.');
+            return;
+        }
+    
+        const formData = new FormData();
+        formData.append('author', authorName);
+        formData.append('title', blogName);
+        formData.append('body', blogContent); 
+        formData.append('images', imageFile);
+    
         try {
-            const title = document.getElementById('title').value;
-            const author = document.getElementById('author').value;
-            const image = document.getElementById('image').value;
-    
-            const postId = currentPostId;
-           
-    
-            const editorContent = getEditorContent();
-    
-            const postData = {
-                title: title,
-                author: author, 
-                image: image,
-                body: editorContent 
-            };
-    
-            const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(postData)
+            const response = await fetch('https://cyberopsrw.cyclic.app/api/v1/post/createPost', {
+                method: 'POST',
+                body: formData,
             });
     
             if (!response.ok) {
-                throw new Error(`Failed to update post ${postId}`);
+                throw new Error('Failed to save post');
             }
     
-            alert('Post updated successfully');
+            alert('Post saved successfully!');
             closeForm();
-            displayBlogPosts( currentPage);
+            displayBlogPosts(currentPage);
         } catch (error) {
-            console.error(error);
-            setTimeout(() => {
-                alert(`Error updating post ${currentPostId}: ${error.message}`);
-            }, 100);
+            console.error('An error occurred while saving the post:', error);
+            alert('Failed to save post. Please try again later.');
         }
     }
     
     
-
-
-
-
-
-
     
-    
-    
-    function savePost() {
-        
-        var titleElement = document.getElementById('title');
-        var editorElement = document.getElementById('editor');
+
+async function updatePost() {
+    try {
+        const title = document.getElementById('title').value;
         const author = document.getElementById('author').value;
-        
+        const image = document.getElementById('image').value;
+        const postId = currentPostId;
 
-        if (!titleElement || !editorElement) {
-            console.error('One or more elements not found.');
-            return;
+        const editorContent = getEditorContent();
+
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('author', author);
+        formData.append('images', image);
+        formData.append('body', editorContent);
+
+        const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`, {
+            method: 'PUT',
+            body: formData // Use FormData for sending multipart/form-data
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to update post ${postId}`);
         }
 
-        var title = titleElement.value;
-        var content = editorElement.value;
-        
-
-        if (title.trim() === '' || content.trim() === '') {
-            alert('Please provide both title and content.');
-        } else {
-            const postData = {
-                title: title,
-                author: author,
-                body: content
-            };
-
-            let url = 'https://cyberopsrw.cyclic.app/api/v1/post/createPost';
-            let method = 'POST';
-
-          
-            fetch(url, {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(postData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Response:', data);
-                // closeForm();
-               
-                currentPage = 1; 
-                displayBlogPosts(currentPage);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed to save post. Please try again later.');
-            });
-        }
+        alert('Post updated successfully');
+        closeForm();
+        displayBlogPosts(currentPage);
+    } catch (error) {
+        console.error(error);
+        setTimeout(() => {
+            alert(`Error updating post ${currentPostId}: ${error.message}`);
+        }, 100);
     }
-
-
+}

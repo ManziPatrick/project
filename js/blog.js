@@ -19,7 +19,7 @@ function displayPosts(page) {
     const endIndex = startIndex + postsPerPage;
     const paginatedPosts = postsArray.slice(startIndex, endIndex);
 
-    postContainer.innerHTML = ''; // Clear previous posts
+    postContainer.innerHTML = '';
 
     paginatedPosts.forEach(post => {
         const card = document.createElement('div');
@@ -28,10 +28,12 @@ function displayPosts(page) {
         const createdAtDate = new Date(createdAtString);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const formattedCreatedAt = createdAtDate.toLocaleDateString('en-US', options);
-        const imageUrl = post.image ? post.image : "/images/11-penetration-testing-tools-the-pros-use.webp";
+        const imageUrl = post.images[0] ? post.images[0] : "/images/11-penetration-testing-tools-the-pros-use.webp";
         card.innerHTML = `
-            <div>
+            <div class="blogimage">
+            
                 <img src="${imageUrl}" alt="${post.title}">
+                
                 <div class="category-tag">
                     <li><a href="" rel="category tag">CyberSecurity</a></li>
                 </div>

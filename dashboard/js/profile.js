@@ -32,13 +32,21 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(userData => {
                
-                updateProfile(userData);
+                const firstName = userData.name.split(' ')[0];
+                document.querySelector('#Username').innerHTML = firstName;
+                document.querySelector('#Profile-name').innerHTML = firstName;
                 document.querySelector('input[name="excyberopsnetworks-email"]').value = userData.email;
-                document.querySelector('#email-display').textContent = userData.email;
+
+            
+            document.querySelector('#email-display').innerHTML = userData.email;
                 document.querySelector('input[type="password"]').value = ''; 
      
                 document.querySelector('#fullName').value = userData.name;
+                
+               
+            
             })
+            
             .catch(error => {
                 console.error('Error:', error);
                 
