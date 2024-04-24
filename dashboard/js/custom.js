@@ -196,7 +196,15 @@
                 }
     
     
-                cell4.innerHTML = `<img src="${post.images[0]}" alt="Blog Image" style="max-width: 100px; max-height: 100px;">`;
+                const imageUrl = post.images[0] ? post.images[0] : '../images/11-penetration-testing-tools-the-pros-use-1024x683.webp';
+
+                cell4.innerHTML = `
+                    <img src="${imageUrl}" 
+                         alt="Blog Image" 
+                         class="imagetable">
+                `;
+                
+              
     
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';

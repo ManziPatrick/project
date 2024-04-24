@@ -123,10 +123,18 @@ th, td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
+    
+    height: 60px; 
 }
 
 th {
     background-color: #f2f2f2;
+}
+
+.imagetable{
+    width: 60px;
+    position: relative;  
+    height: 60px; 
 }
 
 .forms {

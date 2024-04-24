@@ -15,9 +15,17 @@
 #post-image{
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit:contain; 
     
     
+}
+.recent-post-image {
+    width: 60px; 
+    height: 60px; 
+}
+.recent-post-image img{
+    
+    object-fit:contain; 
 }
 
 
