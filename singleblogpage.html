@@ -388,30 +388,48 @@ element.style {
 	</nav>
 <div id="comments" class="comments-area">
 
+	<div id="comments" class="comments-area">
+
 		<div id="respond" class="comment-respond">
-		<div class="commment_title"><h3> Leave Comment <small><a rel="nofollow" id="cancel-comment-reply-link" href="/11-penetration-testing-tools-the-pros-use/#respond" style="display:none;">Cancel reply</a></small></h3></div> <form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate=""> <div class="comment_forms from-area"><div class="comment_forms_inner">
-			
-			<div class="comment_field"><div class="row"><div class="col-md-6 form-group">
-				<input id="name" class="form-control" name="author" type="text" placeholder="Your Name">
-			</div>
-
-			<div class="col-md-6 form-group">
-				<input id="email" class="form-control" name="email" type="text" placeholder=" Email">
-			</div></div>
-
-<p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
-<div class="row">
-			<div class="col-md-6 form-group">
-				<input id="phone" class="form-control" name="phone" type="text" placeholder="Phone">
-			</div>
-
-			<div class="col-md-6 form-group">
-				<input id="title" class="form-control" name="url" type="text" placeholder="Your Website">
-			</div> </div></div>
-<div class="comment_field"><div class="form-group"><textarea name="comment" id="comment" class="form-control" cols="30" rows="6" placeholder=" Your comment..."></textarea></div></div></div></div>
-<button class=" button" type="submit">Post Comment<i class="fa fa-angle-right"></i></button> <input type="hidden" name="comment_post_ID" value="7507" id="comment_post_ID">
-<input type="hidden" name="comment_parent" id="comment_parent" value="0">
-<input type="hidden" id="ct_checkjs_217eedd1ba8c592db97d0dbe54c7adfc" name="ct_checkjs" value="2091361082"></p></form>	</div><!-- #respond -->
+			<h3>Leave Comment</h3>
+			<form id="commentform" class="comment-form" novalidate="">
+				<div class="comment_forms from-area">
+					<div class="comment_forms_inner">
+	
+						<div class="comment_field">
+							<div class="row">
+								<div class="col-md-6 form-group">
+									<input id="name" class="form-control" name="author" type="text" placeholder="Your Name">
+								</div>
+	
+								<div class="col-md-6 form-group">
+									<input id="email" class="form-control" name="email" type="text" placeholder="Email">
+								</div>
+							</div>
+	
+							<div class="row">
+								<div class="col-md-6 form-group">
+									<input id="phone" class="form-control" name="phone" type="text" placeholder="Phone">
+								</div>
+	
+								<div class="col-md-6 form-group">
+									<input id="title" class="form-control" name="url" type="text" placeholder="Your Website">
+								</div>
+							</div>
+						</div>
+	
+						<div class="comment_field">
+							<div class="form-group">
+								<textarea name="comment" id="comment" class="form-control" cols="30" rows="6" placeholder="Your comment..."></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<button id="submit-comment" class="button" type="button">Post Comment<i class="fa fa-angle-right"></i></button>
+			</form>
+		</div>
+	
+	</div>
 	
 </div>
 
@@ -682,6 +700,35 @@ element.style {
 		
 		<link rel="stylesheet" id="redux-custom-fonts-css" href="css/fonts.css" media="all">
 <link rel="stylesheet" id="rs-plugin-settings-css" href="css/rs6.css" media="all">
+<script>
+    document.getElementById("submit-comment").addEventListener("click", function () {
+        var formData = {
+            author: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            url: document.getElementById("title").value,
+            comment: document.getElementById("comment").value
+        };
+
+        
+        fetch('https://cyberopsrw.cyclic.app/api/v1/post/email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Success:', data);
+           
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            
+        });
+    });
+</script>
 <script src="./js/singlepage.js"></script>
 <script src="./js/sideblog.js"></script>
 
