@@ -402,7 +402,7 @@ async function updatePost() {
 
         const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`, {
             method: 'PUT',
-            body: formData // Use FormData for sending multipart/form-data
+            body: formData
         });
 
         if (!response.ok) {

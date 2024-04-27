@@ -257,7 +257,7 @@ input[readonly] {
 .active {
     color: rgb(195, 195, 206);
     font-weight: bold;
-    background-color: #1a237e;
+    
 }
 
 @media (max-width: 768px) {

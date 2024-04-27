@@ -17,8 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
+
    
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener for the "Update Profile" button
+    document.getElementById('updateButto').addEventListener('click', function(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+        // Call the updateProfile function
+        updateProfile(); 
+    });
+
+    
     const userId = localStorage.getItem('userID');
 
     if (userId) {
@@ -36,7 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('#Username').innerHTML = firstName;
                 document.querySelector('#Profile-name').innerHTML = firstName;
                 document.querySelector('input[name="excyberopsnetworks-email"]').value = userData.email;
-
+                document.getElementById('profile').src = userData.profilePic|| 'plugins/images/large/img1.jpg';
+                document.getElementById('profileImage').src = userData.profilePic|| 'plugins/images/large/img1.jpg';
+                console.log("hhhhhhhhhh",userData.email)
             
             document.querySelector('#email-display').innerHTML = userData.email;
                 document.querySelector('input[type="password"]').value = ''; 
@@ -57,51 +72,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-function updateProfile(userData) {
-
-    document.getElementById('fullName').value = userData.name;
-    document.getElementById('excyberopsnetworks-email').value = userData.email;
-    document.querySelector('#fullNameDisplay').textContent = userData.name;
-    document.querySelector('#email-display').textContent = userData.email;
-   
-    document.getElementById('profileImage').src = userData.profilePic || 'plugins/images/large/img1.jpg';
-
-    var updatedData = {
-        name: document.getElementById('fullName').value,
-        email: document.getElementById('excyberopsnetworks-email').value,
-      
-    };
-
-    var userId = localStorage.getItem('userID');
-    fetch(`https://cyberopsrw.cyclic.app/api/v1/user/api/v1/user/updateAdminById/${userId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to update user data.');
+async function updateProfile() {
+    try {
+        const email = document.getElementById('excyberopsnetworks-email').value;
+        const name = document.getElementById('fullName').value; // Use value directly for input fields
+        const image = document.getElementById('profileImageInput'); // Assuming you have an input with ID 'profileImage'
+        const imageFile = image.files[0];
+        if (!email || !name ||  !imageFile) {
+            console.error('Please fill in all required fields.');
+            return;
         }
-        return response.json();
-    })
-    .then(updatedUserData => {
-       
-        alret('Profile updated successfully.', 'alert-success');
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        showToast('Failed to update profile. Please try again.', 'alert-danger');
-    });
-}
 
-function handleImageUpload(imageFile) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-        var profileImage = document.getElementById('profileImage');
-        profileImage.src = e.target.result;
-    };
-    reader.readAsDataURL(imageFile);
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('name', name);
+       formData.append('images', imageFile);
+       
+
+        const userId = localStorage.getItem('userID');
+        const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/user/updateAdminById/${userId}`, {
+            method: 'PUT',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to update user profile.');
+        }
+
+        alert('Profile updated successfully');
+        // ... other success logic (e.g., update UI)
+
+    } catch (error) {
+        console.error('Error updating profile:', error);
+        // Handle errors appropriately (e.g., display error message to user)
+    }
 }
