@@ -31,6 +31,7 @@
 
     });
 
+
     function showLoader() {
         console.log("Showing loader...");
         $(".preloader").fadeIn();
@@ -40,6 +41,7 @@
         console.log("Hiding loader...");
         $(".preloader").fadeOut();
     }
+
 
 
     document.getElementById('updateButton').style.display = 'none';
@@ -57,20 +59,7 @@
 
 
 
-    function toggleForm() {
-        const fixedForm = document.querySelector('.fixed-form');
-        if (fixedForm.style.display === 'block') {
-            fixedForm.style.display = 'none';
-        } else {
-            fixedForm.style.display = 'block';
-        }
-    }
-    
-    function openForm() {
-        document.getElementById('formPopup').style.display = 'block';
-        document.getElementById('updateButton').style.display = 'none';
-        document.getElementById('saveButton').style.display = 'inline-block';
-    }
+   
 
     function closeForm() {
         document.getElementById('formPopup').style.display = 'none';
@@ -418,4 +407,20 @@ async function updatePost() {
             alert(`Error updating post ${currentPostId}: ${error.message}`);
         }, 100);
     }
+}
+
+
+function toggleForm() {
+    const fixedForm = document.querySelector('.fixed-form');
+    if (fixedForm.style.display === 'block') {
+        fixedForm.style.display = 'none';
+    } else {
+        fixedForm.style.display = 'block';
+    }
+}
+
+function openForm() {
+    document.getElementById('formPopup').style.display = 'block';
+    document.getElementById('updateButton').style.display = 'none';
+    document.getElementById('saveButton').style.display = 'inline-block';
 }

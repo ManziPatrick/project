@@ -709,26 +709,34 @@ element.style {
             url: document.getElementById("title").value,
             comment: document.getElementById("comment").value
         };
+        var urlParams = new URLSearchParams(window.location.search);
+        var postId = urlParams.get('id');
 
-        
-        fetch('https://cyberopsrw.cyclic.app/api/v1/post/email', {
+        fetch(`https://cyberopsrw.cyclic.app/api/v1/comment/createComment/${postId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData),
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
-            alert('Success:', data);
-           
+            console.log('Success:', data);
+
         })
         .catch((error) => {
+
             console.error('Error:', error);
-            
+
         });
     });
 </script>
+
 <script src="./js/singlepage.js"></script>
 <script src="./js/sideblog.js"></script>
 
