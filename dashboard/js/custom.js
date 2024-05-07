@@ -93,6 +93,20 @@
                 }
                 
                 console.log('Post deleted successfully');
+                Toastify({
+                    text: 'Blog deleted successfull' ,
+                    duration: 3000, 
+                    close: true,
+                    backgroundColor: 'green',
+                    style: {
+                        'maxWidth': '400px',
+                        'font-size': '14px',
+                        'padding': '8px',
+                        'text-align': 'center',
+                        
+                    },
+                    
+                }).showToast();
                 
                 displayBlogPosts(currentPage);
             })
@@ -362,7 +376,7 @@
                 throw new Error('Failed to save post');
             }
             Toastify({
-                text: 'Post saved successfully!' ,
+                text: 'Blog saved successfully!' ,
                 duration: 3000, 
                 close: true,
                 backgroundColor: 'green',
@@ -383,7 +397,7 @@
         } catch (error) {
             console.error('An error occurred while saving the post:', error);
             Toastify({
-                text: 'Failed to save post. Please try again later.' ,
+                text: 'Failed to save Blog. Please try again later.' ,
                 duration: 3000, 
                 close: true,
                 backgroundColor: 'red',
@@ -426,12 +440,12 @@ async function updatePost() {
         if (!response.ok) {
             throw new Error(`Failed to update post ${postId}`);
         }
-
+        document.getElementById('blogForm').reset()
         Toastify({
-            text: 'Post updated successfully' ,
+            text: 'blog updated successfully' ,
             duration: 3000, 
             close: true,
-            backgroundColor: 'red',
+            backgroundColor: 'green',
             style: {
                 'maxWidth': '400px',
                 'font-size': '14px',

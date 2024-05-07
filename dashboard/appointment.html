@@ -6,28 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords"
-        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, cyberopsnetworks lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, cyberopsnetworks admin lite dashboard bootstrap 5 dashboard template">
+        content="wrappixel">
     <meta name="description"
         content="cyberopsnetworks Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>cyberopsnetworks Admin Lite Template by WrapPixel</title>
+    <title>cyberopsnetworks Admin </title>
     <link rel="canonical" href="https://www.//templates/cyberopsnetworks-admin-lite/" />
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
     
-  <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
- 
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-
-   <link href="css/style.min.css" rel="stylesheet">
    
-   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="blog.css">
+    <link href="plugins/bower_components/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css">
+   
+    
+    <link href="css/style.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="blog.css">
+    <style>
+         .hidden {
+        display: none;
+    }
+    </style>
 </head>
 
 <body>
-  
    
     <div class="preloader">
         <div class="lds-ripple">
@@ -35,10 +36,10 @@
             <div class="lds-pos"></div>
         </div>
     </div>
-
-    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+  
+    <div id="main-wrapper" data-layout="vertical"  data-sidebartype="full"
         data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-
+       
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <img src="../images/CyberOps-White.svg" alt=""  style="width: 60px; height: 50px;" >
@@ -77,14 +78,11 @@
                 </div>
             </nav>
         </header>
-        
-        <aside class="left-sidebar" data-sidebarbg="skin6">
-         
+      
+        <aside class="left-sidebar" data-sidebarbg="skin6" >
             <div class="scroll-sidebar">
-          
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                       
                         <li class="sidebar-item pt-2">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
                                 aria-expanded="false">
@@ -99,7 +97,7 @@
                                 <span class="hide-menu">Profile</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
+   <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashbordUsers.html"
                                 aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
@@ -135,20 +133,22 @@
                             </a>
                         </li>
                        
-                      
+                        
                     </ul>
 
                 </nav>
-                
             </div>
-            <!-- End Sidebar scroll-->
-        </aside>
 
-        <div class="page-wrapper" style="min-height: 250px;">
+        </aside>
+      
+        <div class="page-wrapper">
+          
+         
+          
             <div class="page-breadcrumb bg-white">
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Blog</h4>
+                        <h4 class="page-title">Dashboard</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <div class="d-md-flex">
@@ -159,104 +159,97 @@
                         </div>
                     </div>
                 </div>
-                
+                <!-- /.col-lg-12 -->
             </div>
-         
+          
+          
             <div class="container-fluid">
               
+              
+                
+                
                 <div class="row">
-                 
-
-<div class="col-md-12">
-    
-    <main class="main-content">
-        <div class="semi-blog">
-        <button onclick="openForm()" class="create-button">Create New Blog</button> 
-        <div id="itemInfo"></div>
-    </div>
-        <div id="formPopup" class="form-popup">
-            <span onclick="closeForm()" class="close-button">&times;</span>
-       
-                           <form id="blogForm" class="fixed-form" …>
-                            <div class="forms-data">
-                            <div>
-                        <label for="editor">title</label>
-                        <input type="text" id="title">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="white-box">
+                            <div class="d-md-flex mb-3">
+                                <!-- <h3 class="box-title mb-0">Recent Appointment</h3> -->
+                                <div id="toggleButtons">
+                                    <button id="appointmentsButton" onclick="displayAppointments()">Recent Appointments</button>
+                                    
                                 </div>
-                                <div>
-                        <label for="editor">Author</label>
-                        <input type="text" id="author">
-
-                    </div>
-                    <div>
-                        <label for="image">Image :</label>
-                        <input type="file" name="image" id="image">
-                    </div>
-                </div>
-                        <input id="x" type="hidden" name="content">
-                        <label for="editor">Blog Content:</label>
-                        <trix-editor input="x" id="editor" name="editor" required style="max-height: 200px; overflow-y: auto;"></trix-editor>
-                      
-                       
-                     
-                      
-<div class="buttons">
-              
-              </div>
-              <button onclick="updatePost(); return false;" id="updateButton">Update Post</button>
-              <button onclick="savePost(); return false;" type="button" class="save-button" id="saveButton">Save Post</button>
-            
-        </form>  
-        <div>
-           
-                      </div>
-              
-
-        </div>
-
-        <table class="table text-nowrap">
-            <thead>
-                <tr>
-                    <th class="border-top-0">#</th>
-                    <th class="border-top-0">Title </th>
-                    <th class="border-top-0">Blog Content</th>
-                    <th class="border-top-0">Image</th>
-                    <th class="border-top-0">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="blogTableBody">
-               
-            </tbody>
-            
-        </table>
-        <div id="paginationContainer"></div>
-        
-    </main>
-
+                                <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
+                                    <select class="form-select shadow-none row border-top">
+                                        <option>March 2021</option>
+                                        <option>April 2021</option>
+                                        <option>May 2021</option>
+                                        <option>June 2021</option>
+                                        <option>July 2021</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table no-wrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">#</th>
+                                            <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Email</th>
+                                            <th class="border-top-0">Phone</th>
+                                            <th class="border-top-0">Message</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody">
+                                        
+                                    </tbody>
+                                </table>
+                                <div id="paginationContainer"></div>
+                                
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
-               
+              
+                
+              
+              
             </div>
-           
+          
             <footer class="footer text-center"> 2024 © cyberopsnetworks Admin brought to you by <a
-                    href="https://www.//"></a>
+                    href="https://www.//">/</a>
             </footer>
+          
+          
         </div>
+      
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  
     <script src="plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.bundle.min.js"></script>
      <script src="js/app-style-switcher.js"></script>
 <script src="js/User.js"></script>
-    <!--Wave Effects -->
+<script src="js/homedashboard.js"></script>
+    <script src="plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
     <script src="js/waves.js"></script>
-        <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
     <script src="js/custom.js"></script>
-    
+    <script src="/js/appointment.js"></script>
+    <script src="plugins/bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="js/pages/dashboards/dashboard1.js"></script>
+    <script src="/js/contact.js"></script>
+    <script>
+        function showPopup(element) {
+            var fullText = "Livecore.cz - website for soccer fans! Here you can find games that are being played today, as well as all major league game scores from around the world! Gamble Responsibly. Gambling Therapy. 18+"
+            var shortenedText = fullText.length > 40 ? fullText.slice(0, 40) + '...' : fullText;
+            document.getElementById('popupContent').textContent = fullText;
+            document.querySelector('.popup').style.display = 'block';
+        }
+
+        function hidePopup() {
+            document.querySelector('.popup').style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>

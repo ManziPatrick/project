@@ -6,7 +6,7 @@ function displayBlogPostData() {
     const viewsCountElement = document.querySelector('.post-views-count');
 const headerBlog = document.querySelector(".headBlog")
 const titleBlog = document.querySelector("title")
-title
+
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 

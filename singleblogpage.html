@@ -688,7 +688,7 @@ element.style {
         var nameInput = document.getElementById("name").value;
         var commentInput = document.getElementById("comment").value;
 
-        // Simple form validation
+      
         if (nameInput.trim() === '' || commentInput.trim() === '') {
             Toastify({
                 text: 'Please fill in all fields',
@@ -727,6 +727,19 @@ element.style {
         })
         .then(data => {
             console.log('Success:', data);
+			Toastify({
+                text: 'comment successfull sent ',
+                duration: 3000, 
+                close: true,
+                backgroundColor: 'green',
+                style: {
+                    'maxWidth': '400px',
+                    'font-size': '14px',
+                    'padding': '8px',
+                    'text-align': 'center',
+                }
+            }).showToast();
+			resetForm()
         })
         .catch((error) => {
             Toastify({
@@ -742,7 +755,12 @@ element.style {
                 }
             }).showToast();
         });
+		function resetForm() {
+        document.getElementById("name").value = '';
+        document.getElementById("comment").value = '';
+    }
     });
+	
 </script>
 
 <script src="./js/singlepage.js"></script>

@@ -20,7 +20,7 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/comment/getAllComment')
             const commentRow = document.createElement('div');
             commentRow.classList.add('d-flex', 'flex-row', 'comment-row', 'p-3');
             const imgDiv = document.createElement('div');
-            imgDiv.classList.add('p-2');
+            imgDiv.classList.add('p-0');
             const img = document.createElement('img');
             img.src = `https://i.pravatar.cc/150?u=${comment._id}`;
             img.alt = 'user';
@@ -33,12 +33,12 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/comment/getAllComment')
             authorHeader.classList.add('font-medium');
             authorHeader.textContent = comment.name;
             const commentContent = document.createElement('span');
-            commentContent.classList.add('mb-3', 'd-block');
+            commentContent.classList.add('mb-1', 'd-block');
             commentContent.textContent = comment.text;
             const commentFooter = document.createElement('div');
             commentFooter.classList.add('comment-footer', 'd-md-flex', 'align-items-center');
             const dateDiv = document.createElement('div');
-            dateDiv.classList.add('text-muted', 'fs-2', 'ms-auto', 'mt-2', 'mt-md-0');
+            dateDiv.classList.add('text-muted', 'fs-2', 'ms-auto', 'mt-1', 'mt-md-0');
             dateDiv.textContent = new Date(comment.createdAt).toLocaleDateString();
 
             commentTextDiv.appendChild(authorHeader);
@@ -56,7 +56,7 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/comment/getAllComment')
 
     function updatePagination() {
         paginationContainer.innerHTML = '';
-
+    
         const prevButton = document.createElement('button');
         prevButton.innerHTML = '&lt;';
         prevButton.disabled = currentPage === 1;
@@ -64,8 +64,7 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/comment/getAllComment')
             currentPage--;
             displayComments(currentPage);
         });
-        paginationContainer.appendChild(prevButton);
-
+    
         const nextButton = document.createElement('button');
         nextButton.innerHTML = '&gt;'; 
         nextButton.disabled = (currentPage * commentsPerPage) >= data.length;
@@ -73,8 +72,29 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/comment/getAllComment')
             currentPage++;
             displayComments(currentPage);
         });
-        paginationContainer.appendChild(nextButton);
+    
+        const totalPages = Math.ceil(data.length / commentsPerPage);
+    
+        if (currentPage !== 1) {
+            paginationContainer.appendChild(prevButton);
+        }
+    
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.textContent = i;
+            pageButton.addEventListener('click', () => {
+                currentPage = i;
+                displayComments(currentPage);
+            });
+            paginationContainer.appendChild(pageButton);
+        }
+    
+        if (currentPage !== totalPages) {
+            paginationContainer.appendChild(nextButton);
+        }
     }
+    
+    
 
     displayComments(currentPage);
 })
