@@ -19,22 +19,68 @@ function signIn() {
         })
         .then(response => {
             if (!response.ok) {
+                Toastify({
+                    text: 'Login failed. check your email or password',
+                    duration: 3000, 
+                    close: true,
+                    backgroundColor: 'red',
+                    style: {
+                        'maxWidth': '400px',
+                        'font-size': '14px',
+                        'padding': '8px',
+                        'text-align': 'center',
+                        
+                    },
+                    
+                }).showToast();
+                // alert("Login failed.")
                 throw new Error('Login failed.');
             }
             return response.json(); 
         })
         .then(data => {
-            
+            console.log(data )
             localStorage.setItem('token', data.token);
             localStorage.setItem('userID', data._id);
+            Toastify({
+                text: 'Login sucessfull' ,
+                duration: 3000, 
+                close: true,
+                backgroundColor: 'green',
+                style: {
+                    'maxWidth': '400px',
+                    'font-size': '14px',
+                    'padding': '8px',
+                    'text-align': 'center',
+                    
+                },
+                
+            }).showToast();
+            // alert('Login successful.');
 
-            alert('Login successful.');
-            window.location.href = 'dashboard/dashboard.html';
-            form.reset(); 
+          setTimeout(function() {
+        window.location.href = 'dashboard/dashboard.html';
+        form.reset(); 
+    }, 3000);
 
         })
         .catch(error => {
-            console.error('Error:', error);
+            // console.error('Error:', error);
+            // Toastify({
+            //     text: 'Login failed. check your email or password',
+            //     duration: 3000, 
+            //     close: true,
+            //     backgroundColor: 'red',
+            //     style: {
+            //         'maxWidth': '400px',
+            //         'font-size': '14px',
+            //         'padding': '8px',
+            //         'text-align': 'center',
+                    
+            //     },
+                
+            // }).showToast();
+            
           
         });
     }

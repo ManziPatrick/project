@@ -1,3 +1,12 @@
+#toast-container {
+    position: fixed;
+    z-index: 9999;
+    width: auto;
+    top: 10px;
+    left: 10px; 
+}
+
+
 .wpcf7 .screen-reader-response {
 	position: absolute;
 	overflow: hidden;
@@ -170,3 +179,6 @@ form.submitting .wpcf7-spinner {
 .wpcf7-reflection > output[hidden] {
 	display: none;
 }
+
+
+

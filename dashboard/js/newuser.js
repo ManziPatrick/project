@@ -6,12 +6,40 @@ function registerAdmin() {
     const agreeCheckbox = document.getElementById('agreeCheckbox').checked;
 
     if (!name || !email || !password || !confirmPassword) {
-      alert('Please fill in all fields');
+      
+      Toastify({
+        text:'Please fill in all fields',
+        duration: 3000, 
+        close: true,
+        backgroundColor: 'error',
+        style: {
+            'maxWidth': '400px',
+            'font-size': '14px',
+            'padding': '8px',
+            'text-align': 'center',
+    
+        },
+        
+    }).showToast();
       return;
     }
 
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      Toastify({
+        text:'Passwords do not match',
+        duration: 3000, 
+        close: true,
+        backgroundColor: 'error',
+        style: {
+            'maxWidth': '400px',
+            'font-size': '14px',
+            'padding': '8px',
+            'text-align': 'center',
+    
+        },
+        
+    }).showToast();
+      // alert('Passwords do not match');
       return;
     }
 
@@ -42,12 +70,42 @@ function registerAdmin() {
         return response.json();
       })
       .then(data => {
-        alert('Admin registered successfully');
+
+        Toastify({
+          text: 'Admin registered successfully',
+          duration: 3000, 
+          close: true,
+          backgroundColor: 'green',
+          style: {
+              'maxWidth': '400px',
+              'font-size': '14px',
+              'padding': '8px',
+              'text-align': 'center',
+      
+          },
+          
+      }).showToast();
+ 
         
       })
       .catch(error => {
         console.error('There was an error registering the admin:', error);
-        alert('An error occurred: ' + error.message);
+        Toastify({
+          text: 'An error occurred: ' + error.message,
+          duration: 3000, 
+          close: true,
+          backgroundColor: 'error',
+          style: {
+              'maxWidth': '400px',
+              'font-size': '14px',
+              'padding': '8px',
+              'text-align': 'center',
+      
+          },
+          
+      }).showToast();
+ 
+        // alert('An error occurred: ' + error.message);
       });
       
   }

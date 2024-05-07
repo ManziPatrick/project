@@ -2,8 +2,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+		
 
-	<script id="cookieyes" type="text/javascript" src="js/script.js"></script>
 <!-- Search Engine Optimization by Rank Math - https://rankmath.com/ -->
 <title>Contact Us - CyberOpsNetworks</title>
 <meta name="description" content="Got a project in mind? We’d love to hear about it. Take five minutes to fill out our project form so that we can get to know you and understand your project.">
@@ -103,7 +104,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin=""><!--n2css--><script src="js/jquery.min.js" id="jquery-core-js"></script>
 <script src="js/jquery-migrate.min.js" id="jquery-migrate-js"></script>
 
-<!-- Google Analytics snippet added by Site Kit -->
+
 <script src="https://www.googletagmanager.com/gtag/js?id=G-E3T7N3D9QE" id="google_gtagjs-js" async=""></script>
 <script id="google_gtagjs-js-after">
 window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
@@ -113,7 +114,6 @@ gtag("set", "developer_id.dZTNiMT", true);
 gtag("config", "G-E3T7N3D9QE");
 </script>
 
-<!-- End Google Analytics snippet added by Site Kit -->
 <link rel="https://api.w.org/" href="/wp-json/"><link rel="alternate" type="application/json" href="/wp-json/wp/v2/pages/6411"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
 <meta name="generator" content="WordPress 6.4.3">
 <link rel="shortlink" href="/?p=6411">
@@ -248,20 +248,13 @@ element.style {
 		text-align:center !important;
 }
 
-/* main#primary.site-main{
-	padding: 0px 30px;
-} */
 
-
-/* Blog post views counter */
 
 .post-views{
 	display:none;
 }
 
-/* .owl-stage .owl-item:nth-child(even){
-	margin-top: -30px !important;
-} */
+
 
 
 
@@ -517,6 +510,8 @@ element.style {
 						<div class="elementor-element elementor-element-065898c elementor-widget elementor-widget-shortcode" data-id="065898c" data-element_type="widget" data-widget_type="shortcode.default">
 				<div class="elementor-widget-container">
 					<div class="elementor-shortcode">
+
+<div id="toast-container"></div>
 
 						<div id="respond" class="comment-respond">
 							<h3>Leave Comment</h3>
@@ -830,7 +825,7 @@ element.style {
 		</div>
 	</footer>
 </div><!-- #page -->
-
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
     document.getElementById("submit-comment").addEventListener("click", function () {
         var formData = {
@@ -842,23 +837,49 @@ element.style {
         };
 
         
-        fetch('https://cyberopsrw.cyclic.app/api/v1/post/email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
+		fetch('https://cyberopsrw.cyclic.app/api/v1/post/email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+       
+        Toastify({
+            text: 'Success: ' + JSON.stringify(data),
+            duration: 3000, 
+            close: true,
+            backgroundColor: 'green',
+            style: {
+                'maxWidth': '400px',
+                'font-size': '14px',
+                'padding': '8px',
+                'text-align': 'center',
+				
             },
-            body: JSON.stringify(formData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Success:', data);
-           
-        })
-        .catch((error) => {
-            console.error('Error:', error);
             
-        });
+        }).showToast();
+    })
+    .catch((error) => {
+       
+        Toastify({
+            text: 'Error: ' + error,
+            duration: 3000,
+            close: true,
+            backgroundColor: 'red',
+            style: {
+                'maxWidth': '400px',
+                'font-size': '14px',
+                'padding': '8px',
+                'text-align': 'center',
+				
+            },
+            
+        }).showToast();
     });
+});
 </script>
 		<script data-cfasync="false" src="js/email-decode.min.js"></script><script type="text/javascript">
 			window.RS_MODULES = window.RS_MODULES || {};
@@ -869,7 +890,8 @@ element.style {
 			window.RS_MODULES.type = 'compiled';
 		</script>
 		<link rel="stylesheet" id="redux-custom-fonts-css" href="css/fonts.css" media="all">
-<link rel="stylesheet" id="rs-plugin-settings-css" href="css/rs6.css" media="all">
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <style id="rs-plugin-settings-inline-css">
 #rs-demo-id {}
 </style>

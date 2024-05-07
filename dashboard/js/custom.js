@@ -361,13 +361,42 @@
             if (!response.ok) {
                 throw new Error('Failed to save post');
             }
+            Toastify({
+                text: 'Post saved successfully!' ,
+                duration: 3000, 
+                close: true,
+                backgroundColor: 'green',
+                style: {
+                    'maxWidth': '400px',
+                    'font-size': '14px',
+                    'padding': '8px',
+                    'text-align': 'center',
+                    
+                },
+                
+            }).showToast();
+        
     
-            alert('Post saved successfully!');
+            // alert('Post saved successfully!');
             closeForm();
             displayBlogPosts(currentPage);
         } catch (error) {
             console.error('An error occurred while saving the post:', error);
-            alert('Failed to save post. Please try again later.');
+            Toastify({
+                text: 'Failed to save post. Please try again later.' ,
+                duration: 3000, 
+                close: true,
+                backgroundColor: 'red',
+                style: {
+                    'maxWidth': '400px',
+                    'font-size': '14px',
+                    'padding': '8px',
+                    'text-align': 'center',
+                    
+                },
+                
+            }).showToast();
+            // alert('Failed to save post. Please try again later.');
         }
     }
     
@@ -398,13 +427,41 @@ async function updatePost() {
             throw new Error(`Failed to update post ${postId}`);
         }
 
-        alert('Post updated successfully');
+        Toastify({
+            text: 'Post updated successfully' ,
+            duration: 3000, 
+            close: true,
+            backgroundColor: 'red',
+            style: {
+                'maxWidth': '400px',
+                'font-size': '14px',
+                'padding': '8px',
+                'text-align': 'center',
+                
+            },
+            
+        }).showToast();
+        // alert('Post updated successfully');
         closeForm();
         displayBlogPosts(currentPage);
     } catch (error) {
         console.error(error);
         setTimeout(() => {
-            alert(`Error updating post ${currentPostId}: ${error.message}`);
+            Toastify({
+                text: `Error updating post ${currentPostId}: ${error.message}` ,
+                duration: 3000, 
+                close: true,
+                backgroundColor: 'red',
+                style: {
+                    'maxWidth': '400px',
+                    'font-size': '14px',
+                    'padding': '8px',
+                    'text-align': 'center',
+                    
+                },
+                
+            }).showToast();
+           
         }, 100);
     }
 }

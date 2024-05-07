@@ -18,7 +18,7 @@ title
             return response.json();
         })
         .then(postData => {
-            console.log("hhhhhhhhc", postData);
+          
            
 
             if (titleElement && contentElement && authorElement && dateElement && viewsCountElement) {

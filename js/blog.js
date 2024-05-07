@@ -35,7 +35,7 @@ function displayPosts(page) {
                 <img src="${imageUrl}" alt="${post.title}">
                 
                 <div class="category-tag">
-                    <li><a href="" rel="category tag">CyberSecurity</a></li>
+                    <li><a href="singleblogpage.html?id=${post._id}" rel="category tag">CyberSecurity</a></li>
                 </div>
                 <div class="card-body">
                     <h2 class="card-title">${post.title}</h2>

@@ -2,6 +2,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
            
 <!--         
@@ -381,15 +382,16 @@ element.style {
 			
 
 </article>
-
+<div id="toast-container"></div>
 	<nav class="navigation post-navigation" aria-label="Posts">
 		<h2 class="screen-reader-text">Post navigation</h2>
 		<div class="nav-links"><div class="nav-previous"><a href="" rel="prev"><i class="fa fa-angle-double-left"></i><span class="nav-subtitle">Previous Post</span></a></div><div class="nav-next"><a href="" rel="next"><span class="nav-subtitle">Next Post</span><i class="fa fa-angle-double-right"></i></a></div></div>
 	</nav>
+	
 <div id="comments" class="comments-area">
 
 	<div id="comments" class="comments-area">
-
+		
 		<div id="respond" class="comment-respond">
 			<h3>Leave Comment</h3>
 			<form id="commentform" class="comment-form" novalidate="">
@@ -402,19 +404,7 @@ element.style {
 									<input id="name" class="form-control" name="author" type="text" placeholder="Your Name">
 								</div>
 	
-								<div class="col-md-6 form-group">
-									<input id="email" class="form-control" name="email" type="text" placeholder="Email">
-								</div>
-							</div>
-	
-							<div class="row">
-								<div class="col-md-6 form-group">
-									<input id="phone" class="form-control" name="phone" type="text" placeholder="Phone">
-								</div>
-	
-								<div class="col-md-6 form-group">
-									<input id="title" class="form-control" name="url" type="text" placeholder="Your Website">
-								</div>
+							
 							</div>
 						</div>
 	
@@ -546,15 +536,7 @@ element.style {
 			</div>
 					</div>
 	</section>
-	<!-- <section id="block-6" class="widget widget_block">
-<div class="wp-block-group is-layout-flow wp-block-group-is-layout-flow"><div class="wp-block-group__inner-container">
-<h2 class="wp-block-heading">Categories</h2>
-
-
-<ul class="wp-block-categories-list wp-block-categories">	<li class="cat-item cat-item-24"><a href="/category/cybersecurity/">CyberSecurity</a>
-</li>
-</ul></div></div>
-</section></aside> -->
+	
 				</div>
 			</div>
 		</div>
@@ -700,12 +682,32 @@ element.style {
 		
 		<link rel="stylesheet" id="redux-custom-fonts-css" href="css/fonts.css" media="all">
 <link rel="stylesheet" id="rs-plugin-settings-css" href="css/rs6.css" media="all">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
     document.getElementById("submit-comment").addEventListener("click", function () {
+        var nameInput = document.getElementById("name").value;
+        var commentInput = document.getElementById("comment").value;
+
+        // Simple form validation
+        if (nameInput.trim() === '' || commentInput.trim() === '') {
+            Toastify({
+                text: 'Please fill in all fields',
+                duration: 3000, 
+                close: true,
+                backgroundColor: 'red',
+                style: {
+                    'maxWidth': '400px',
+                    'font-size': '14px',
+                    'padding': '8px',
+                    'text-align': 'center',
+                }
+            }).showToast();
+            return; 
+        }
+
         var formData = {
-            name: document.getElementById("name").value,
-            
-            text: document.getElementById("comment").value
+            name: nameInput,
+            text: commentInput
         };
         var urlParams = new URLSearchParams(window.location.search);
         var postId = urlParams.get('id');
@@ -725,12 +727,20 @@ element.style {
         })
         .then(data => {
             console.log('Success:', data);
-
         })
         .catch((error) => {
-
-            console.error('Error:', error);
-
+            Toastify({
+                text: 'An error occurred: ' + error.message,
+                duration: 3000, 
+                close: true,
+                backgroundColor: 'red',
+                style: {
+                    'maxWidth': '400px',
+                    'font-size': '14px',
+                    'padding': '8px',
+                    'text-align': 'center',
+                }
+            }).showToast();
         });
     });
 </script>
