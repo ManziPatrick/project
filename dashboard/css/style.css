@@ -10211,7 +10211,7 @@ File: scss
   margin-bottom: 10px; }
   .comment-widgets .comment-row {
     border-bottom: 1px solid transparent;
-    padding: 14px;
+    padding: 0px 14px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

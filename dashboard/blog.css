@@ -224,6 +224,8 @@ button:hover {
 #pagination-container{
     display: flex;
     gap: 10px;
+    margin-left: 40px;
+    padding-bottom: 10px;
 }
 #pagination-container button{
     background-color:#0c103b;
@@ -280,4 +282,18 @@ input[readonly] {
         display: block;
         width: 100%;
     }
+}
+#page-wrapper{
+height: 100vh;
+}
+#rowd{
+    height: 60vh;
+}
+#comments-container{
+    padding: 0px 10px;
+}
+.comment-widgets .comment-row {
+    background-color: #b3b3b9;
+    padding: 4px;
+    border-radius: 50px;
 }

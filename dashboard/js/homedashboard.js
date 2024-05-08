@@ -3,7 +3,7 @@ fetch('https://cyberopsrw.cyclic.app/api/v1/comment/getAllComment')
 .then(data => {
     const commentsContainer = document.getElementById('comments-container');
     const paginationContainer = document.getElementById('pagination-container');
-    const commentsPerPage = 5;
+    const commentsPerPage = 4;
     let currentPage = 1;
 
     function displayComments(page) {
