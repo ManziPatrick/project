@@ -547,9 +547,9 @@ input[type="datetime-local"],
 input[type="color"],
 textarea {
 	color: #666;
-	border: 1px solid #ccc;
+	border: 1px solid #471874;
 	border-radius: 3px;
-	padding: 3px;
+	padding: 6px;
 }
 
 input[type="text"]:focus,
@@ -579,16 +579,7 @@ textarea {
 	width: 100%;
 }
 
-/*--------------------------------------------------------------
-# Layouts
---------------------------------------------------------------*/
 
-/*--------------------------------------------------------------
-# Components
---------------------------------------------------------------*/
-
-/* Navigation
---------------------------------------------- */
 .main-navigation {
 	display: block;
 }

@@ -1,6 +1,6 @@
 #blog-content {
     width: 100%;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
     padding: 10px;
     min-height: 100px;
 }
@@ -9,7 +9,7 @@
     position: fixed;
 }
 .page-wrapper{
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .form-input{
@@ -34,7 +34,7 @@
     border-radius: 4px;
     position: relative;
 }
-trix-editor img {
+.trix-editor img {
     max-width: 100px; 
     max-height: 100px; 
   }
@@ -111,11 +111,18 @@ height: 10%;
     margin-right: 10px;
 }
 
+
+.table-container {
+    max-height: 300px; 
+    padding: 0px 0px;
+    overflow-y: auto; 
+}
+
 table {
     position: relative;
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
@@ -161,9 +168,9 @@ th {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #2f323f;
     color: white;
-    padding: 10px 15px;
+    padding: 5px 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -196,7 +203,7 @@ button:hover {
 
 
 .form-popup button {
-    background-color: #4caf50;
+    background-color: #140c42;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -217,7 +224,7 @@ button:hover {
 }
 #paginationContainer{
     display: flex;
-
+margin-top: 20px;
     gap: 10px;
    
 }
@@ -273,6 +280,9 @@ input[readonly] {
     font-weight: bold;
     
 }
+.trix-button-row button {
+    background-color: white;
+}
 
 @media (max-width: 768px) {
     .hide-menu {
@@ -283,8 +293,9 @@ input[readonly] {
         width: 100%;
     }
 }
-#page-wrapper{
-height: 100vh;
+.page-wrapper{
+height: 90vh;
+overflow-y: hidden;
 }
 #rowd{
     height: 60vh;
