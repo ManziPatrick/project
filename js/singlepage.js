@@ -10,7 +10,7 @@ const titleBlog = document.querySelector("title")
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
-    fetch(`https://cyberopsrw.cyclic.app/api/v1/post/getPostById/${postId}`)
+    fetch(`https://cyberops-bn.onrender.com/api/v1/post/getPostById/${postId}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to fetch post data');

@@ -6,7 +6,7 @@ const postsPerPage = 3;
 let postsArray = [];
 let intervalId;
 
-fetch('https://cyberopsrw.cyclic.app/api/v1/post/getAllPosts')
+fetch('https://cyberops-bn.onrender.com/api/v1/post/getAllPosts')
     .then(response => response.json())
     .then(data => {
         postsArray = Array.isArray(data) ? data : [data];

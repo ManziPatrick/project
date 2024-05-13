@@ -1,6 +1,6 @@
 async function displayBlogPosts() {
     try {
-      const response = await fetch('https://cyberopsrw.cyclic.app/api/v1/post/getAllPosts');
+      const response = await fetch('https://cyberops-bn.onrender.com/api/v1/post/getAllPosts');
       if (!response.ok) {
         throw new Error('Failed to fetch blog posts');
       }

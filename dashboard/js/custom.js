@@ -84,7 +84,7 @@
             
            
             
-            fetch(`https://cyberopsrw.cyclic.app/api/v1/post/deletePost/${postId}`, {
+            fetch(`https://cyberops-bn.onrender.com/api/v1/post/deletePost/${postId}`, {
                 method: 'DELETE'
             })
             .then(response => {
@@ -153,7 +153,7 @@
     async function displayBlogPosts(pageNumber) {
         try {
             showLoader();
-            const response = await fetch('https://cyberopsrw.cyclic.app/api/v1/post/getAllPosts');
+            const response = await fetch('https://cyberops-bn.onrender.com/api/v1/post/getAllPosts');
             if (!response.ok) {
                 throw new Error('Failed to fetch blog posts');
             }
@@ -313,7 +313,7 @@
         openForm(); 
     
         try {
-            const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/post/getPostById/${postId}`);
+            const response = await fetch(`https://cyberops-bn.onrender.com/api/v1/post/getPostById/${postId}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch post data');
             }
@@ -367,7 +367,7 @@
         formData.append('images', imageFile);
     
         try {
-            const response = await fetch('https://cyberopsrw.cyclic.app/api/v1/post/createPost', {
+            const response = await fetch('https://cyberops-bn.onrender.com/api/v1/post/createPost', {
                 method: 'POST',
                 body: formData,
             });
@@ -432,7 +432,7 @@ async function updatePost() {
         formData.append('images', image);
         formData.append('body', editorContent);
 
-        const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/post/updatePost/${postId}`, {
+        const response = await fetch(`https://cyberops-bn.onrender.com/api/v1/post/updatePost/${postId}`, {
             method: 'PUT',
             body: formData
         });

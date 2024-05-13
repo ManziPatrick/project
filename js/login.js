@@ -10,7 +10,7 @@ function signIn() {
             password: document.getElementById('password').value.trim()
         };
 
-        fetch('https://cyberopsrw.cyclic.app/api/v1/user/loginAdmin', {
+        fetch('https://cyberops-bn.onrender.com/api/v1/user/loginAdmin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = localStorage.getItem('userID');
 console.log("userId ",userId )
 console.log('Fetching user data for user ID:', userId);
-fetch(`https://cyberopsrw.cyclic.app/api/v1/user/getAdminById/${userId}`)
+fetch(`https://cyberops-bn.onrender.com/api/v1/user/getAdminById/${userId}`)
     .then(response => {
         console.log('Response status:', response.status);
         if (!response.ok) {

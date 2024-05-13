@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
      
-            const response = await fetch('https://cyberopsrw.cyclic.app/api/v1/post/email', {
+            const response = await fetch('https://cyberops-bn.onrender.com/api/v1/post/email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

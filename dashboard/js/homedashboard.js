@@ -1,4 +1,4 @@
-fetch('https://cyberopsrw.cyclic.app/api/v1/comment/getAllComment')
+fetch('https://cyberops-bn.onrender.com/api/v1/comment/getAllComment')
 .then(response => response.json())
 .then(data => {
     const commentsContainer = document.getElementById('comments-container');

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         alert("You can also submit the form to the server if needed")
      
 
-        fetch('https://cyberopsrw.cyclic.app/api/v1/post/email', {
+        fetch('https://cyberops-bn.onrender.com/api/v1/post/email', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

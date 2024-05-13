@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (userId) {
        
-        fetch(`https://cyberopsrw.cyclic.app/api/v1/user/getAdminById/${userId}`)
+        fetch(`https://cyberops-bn.onrender.com/api/v1/user/getAdminById/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch user data');
@@ -90,7 +90,7 @@ async function updateProfile() {
        
 
         const userId = localStorage.getItem('userID');
-        const response = await fetch(`https://cyberopsrw.cyclic.app/api/v1/user/updateAdminById/${userId}`, {
+        const response = await fetch(`https://cyberops-bn.onrender.com/api/v1/user/updateAdminById/${userId}`, {
             method: 'PUT',
             body: formData
         });
