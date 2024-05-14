@@ -4,6 +4,28 @@
     padding: 10px;
     min-height: 100px;
 }
+  
+.logout {
+    background-color: #000000;
+    padding: 5px;
+    display: none;
+}
+
+.mainlog {
+    background-color: #fff;
+    position: absolute;
+    color: #fff;
+}
+
+.log {
+    position: relative;
+}
+
+.log:hover .logout {
+    display: block; 
+    cursor: pointer; 
+}
+
 .topbar{
     width: 100%;
     position: fixed;
@@ -304,7 +326,7 @@ overflow-y: hidden;
     padding: 0px 10px;
 }
 .comment-widgets .comment-row {
-    background-color: #b3b3b9;
+    /* background-color: #b3b3b9; */
     padding: 4px;
     border-radius: 50px;
 }
