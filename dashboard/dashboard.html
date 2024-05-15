@@ -26,6 +26,7 @@
         display: none;
         
     }
+   
   
     </style>
 </head>
@@ -159,7 +160,22 @@
                
               
                 <div class="row" id="rowd">
-                    
+                    <div id="modal" class="modal">
+                        <div class="modal-content">
+                            
+                            
+                            <div class="avatars">
+                                <div class="d-flex">
+                                    <div id="avatar-container" class="p-3"></div>
+                                    <div id="name" class="p-3"></div>
+                                </div>
+                               
+                                <span class="close">&times;</span>
+                            </div>
+                            
+                            <div id="full-message" class="p-3"></div>
+                        </div>
+                    </div>
                     <div class="col-md-12 col-lg-8 col-sm-12">
                         <div class="card white-box p-0">
                             <div class="card-body">
@@ -248,48 +264,14 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <!-- <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success text-white btn-circle btn" type="button" onclick="showName('Varun Dhavan')">
-                                                <i class="fas fa-phone"></i>
-                                            </button>
-                                            <button class="btn btn-info btn-circle btn" type="button" onclick="hideEmail('varun@example.com')">
-                                                <i class="far fa-comments text-white"></i>
-                                            </button>
-                                        </div>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center"><img
-                                                src="plugins/images/users/govinda.jpg" alt="user-img"
-                                                class="img-circle">
-                                            <div class="ms-2">
-                                                <span class="text-dark">Govinda
-                                                    Star <small class="d-block text-success">online</small></span>
-                                            </div>
-                                        </a>
-                                    </li> -->
-                                    <!-- <li>
-                                        <div class="call-chat">
-                                            <button class="btn btn-success text-white btn-circle btn" type="button" onclick="showName('Varun Dhavan')">
-                                                <i class="fas fa-phone"></i>
-                                            </button>
-                                            <button class="btn btn-info btn-circle btn" type="button" onclick="hideEmail('varun@example.com')">
-                                                <i class="far fa-comments text-white"></i>
-                                            </button>
-                                        </div>
-                                        <a href="javascript:void(0)" class="d-flex align-items-center"><img
-                                                src="plugins/images/users/hritik.jpg" alt="user-img" class="img-circle">
-                                            <div class="ms-2">
-                                                <span class="text-dark">John
-                                                    Abraham<small class="d-block text-success">online</small></span>
-                                            </div>
-                                        </a>
-                                    </li> -->
+                                   
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          
+           
             <footer class="footer text-center"> 2024 © cyberopsnetworks Admin brought to you by <a
                     href="https://www.//">/</a>
             </footer>

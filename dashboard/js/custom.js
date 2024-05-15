@@ -137,7 +137,7 @@
     document.addEventListener('trix-attachment-add', function(event) {
         if (event.attachment.file) {
             uploadFile(event.attachment.file);
-            console.log("hhhhhhhhh",event.attachment.file)
+            
         }
 
     });
