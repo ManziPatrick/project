@@ -5,20 +5,115 @@
     min-height: 100px;
 }
   
-.logout {
-    background-color: #000000;
-    padding: 5px;
-    display: none;
+
+
+
+.dropdown-container {
+    
+	display: inline-block;
+	padding: 10px;
 }
 
-.mainlog {
-    background-color: #fff;
-    position: absolute;
-    color: #fff;
+.dropdown {
+    position: relative;
+    border-radius: 50px; /* Move the border-radius from summary to dropdown */
 }
+
+.dropdown img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 0;
+}
+
+.dropdown summary {
+    display: block; /* Change display to block to take up full width */
+    cursor: pointer;
+    border-radius: 50px; /* Apply border-radius to create a circular shape */
+}
+
+.dropdown ul {
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 0 10px #00000030;
+    min-width: max-content;
+    position: absolute;
+    top: 0; 
+    left: 100%; 
+    transform: translateX(-100%); 
+    border-radius: 10px;
+    background-color: #fff;
+    z-index: 2;
+}
+
+.dropdown.right ul {
+    left: auto; 
+    right: 100%; 
+    transform: translateX(0); 
+}
+.material-symbols-outlined{
+padding-left: 10px;
+}
+
+.dropdown ul {
+	padding: 0;
+	margin: 0;
+	box-shadow: 0 0 10px #00000030;
+	min-width: max-content;
+	position: absolute;
+	top: 100%;
+	border-radius: 10px;
+	background-color: #fff;
+	z-index: 2;
+}
+
+.dropdown ul li {
+	list-style-type: none;
+	display: block;
+}
+
+.dropdown ul li:first-of-type {
+	border: none;
+	background-color: #f2f2f2;
+	border-radius: 10px 10px 0 0;
+}
+
+.dropdown ul li:last-of-type {
+	border-radius: 0 0 10px 10px;
+}
+
+.dropdown ul li p {
+	padding: 10px 15px;
+	margin: 0;
+}
+
+.dropdown ul li a {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 10px 32px;
+	text-decoration: none;
+	line-height: 1;
+	color: #333;
+}
+
+.dropdown ul li a:hover {
+	color: #ff34b2;
+}
+
+.dropdown ul li.divider {
+	border: none;
+	border-bottom: 1px solid #333;
+}
+
+.dropdown ul li.divider ~ li {
+	border: none;
+}
+
 
 .log {
-    position: relative;
+  
 }
 
 .log:hover .logout {
@@ -325,7 +420,15 @@ input[readonly] {
 .page-wrapper{
 height: 90vh;
 overflow-y: hidden;
-background: linear-gradient( to right in lch shorter hue, lch(4 80 290), lch(81 104 150) );
+background: url(./../images/cyberopsnetworks-it-managed-services-2048x998.jpg) ;
+background-position: center;
+background-size: cover;
+}
+.main-content{
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+
 }
 #rowd{
     height: 75vh;

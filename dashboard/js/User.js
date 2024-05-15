@@ -1,4 +1,23 @@
 
+
+
+document.addEventListener("DOMContentLoaded", function() {
+ 
+    var profilePic = document.getElementById("navpic");
+
+    profilePic.addEventListener("click", function() {
+  
+        var dropdown = profilePic.closest("details.dropdown");
+
+        if (dropdown.hasAttribute("open")) {
+            dropdown.removeAttribute("open");
+        } else {
+            dropdown.setAttribute("open", "");
+        }
+    });
+});
+
+
 const parseJwt = (token) => {
     try {
         return JSON.parse(atob(token.split('.')[1]));
