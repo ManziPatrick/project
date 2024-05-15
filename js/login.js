@@ -39,7 +39,7 @@ function signIn() {
             return response.json(); 
         })
         .then(data => {
-            console.log(data )
+           
             localStorage.setItem('token', data.token);
             localStorage.setItem('userID', data._id);
             Toastify({

@@ -37,7 +37,7 @@ const titleBlog = document.querySelector("title")
                 headerBlog.textContent=postData.title;
                 titleBlog.textContent=postData.title
             } else {
-                console.log('One or more elements not found.');
+                arlet('One or more elements not found.');
             }
           
         })

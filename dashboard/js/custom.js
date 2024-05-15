@@ -33,12 +33,12 @@
 
 
     function showLoader() {
-        console.log("Showing loader...");
+      
         $(".preloader").fadeIn();
     }
     
     function hideLoader() {
-        console.log("Hiding loader...");
+       
         $(".preloader").fadeOut();
     }
 
@@ -92,7 +92,7 @@
                     throw new Error('Failed to delete post');
                 }
                 
-                console.log('Post deleted successfully');
+
                 Toastify({
                     text: 'Blog deleted successfull' ,
                     duration: 3000, 
@@ -333,7 +333,21 @@
             if (editedPost.body) {
                 editor.loadHTML(editedPost.body);
             } else {
-                console.log('No body content found in the response.');
+                Toastify({
+                    text: 'No body content found in the response.' ,
+                    duration: 3000, 
+                    close: true,
+                    backgroundColor: 'red',
+                    style: {
+                        'maxWidth': '400px',
+                        'font-size': '14px',
+                        'padding': '8px',
+                        'text-align': 'center',
+                        
+                    },
+                    
+                }).showToast();
+              
             }
         } catch (error) {
             console.error('Error fetching post data:', error);

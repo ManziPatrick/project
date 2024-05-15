@@ -41,7 +41,7 @@ async function displayLatestBlogPosts(searchQuery = '') {
                 }
             }
         } else {
-            console.log('Recent post widget not found.');
+            arlet('Recent post widget not found.');
         }
     } catch (error) {
         console.error('Error fetching blog posts:', error);

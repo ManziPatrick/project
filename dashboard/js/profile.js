@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('input[name="excyberopsnetworks-email"]').value = userData.email;
                 document.getElementById('profile').src = userData.profilePic|| 'plugins/images/large/img1.jpg';
                 document.getElementById('profileImage').src = userData.profilePic|| 'plugins/images/large/img1.jpg';
-                console.log("hhhhhhhhhh",userData.email)
+
             
             document.querySelector('#email-display').innerHTML = userData.email;
                 document.querySelector('input[type="password"]').value = ''; 
