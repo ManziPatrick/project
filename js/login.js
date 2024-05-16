@@ -61,25 +61,25 @@ function signIn() {
           setTimeout(function() {
         window.location.href = 'dashboard/dashboard.html';
         form.reset(); 
-    }, 3000);
+    }, 1000);
 
         })
         .catch(error => {
-            // console.error('Error:', error);
-            // Toastify({
-            //     text: 'Login failed. check your email or password',
-            //     duration: 3000, 
-            //     close: true,
-            //     backgroundColor: 'red',
-            //     style: {
-            //         'maxWidth': '400px',
-            //         'font-size': '14px',
-            //         'padding': '8px',
-            //         'text-align': 'center',
+            
+                Toastify({
+                    text: 'Login failed. check your email or password'+ error,
+                    duration: 3000, 
+                    close: true,
+                    backgroundColor: 'red',
+                    style: {
+                        'maxWidth': '400px',
+                        'font-size': '14px',
+                        'padding': '8px',
+                        'text-align': 'center',
+                        
+                    },
                     
-            //     },
-                
-            // }).showToast();
+                }).showToast();
             
           
         });
@@ -95,15 +95,3 @@ form.addEventListener('submit', function (event) {
 });
 
 
-// function getUserInfoFromToken() {
-
-//     var token = localStorage.getItem('token');
-
-//     var userInfo = {
-//         name: "John Doe" 
-//     };
-
-//     return userInfo;
-// }
-// var userInfo = getUserInfoFromToken();
-// document.getElementById('Username').innerText = userInfo.name;
