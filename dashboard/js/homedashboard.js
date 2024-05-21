@@ -128,3 +128,103 @@ fetch('https://cyberops-bn.onrender.com/api/v1/comment/getAllComment')
     .catch(error => {
         console.error('Error:', error);
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const statusClassMap = {
+            'online': 'text-success',
+            'away': 'text-warning',
+            'busy': 'text-danger',
+            'offline': 'text-muted'
+        };
+    
+        const chatList = document.getElementById('chat-list');
+        const chatPerPage = 4; 
+        let currentChatPage = 1;
+        let contacts = [];
+    
+        function displayChatList(page) {
+            chatList.innerHTML = '';
+            const startIndex = (page - 1) * chatPerPage;
+            const endIndex = startIndex + chatPerPage;
+            const chatToShow = contacts.slice(startIndex, endIndex);
+    
+            chatToShow.forEach(user => {
+                const statusClass = statusClassMap[user.status] || 'text-muted';
+                const userItem = `
+                    <li>
+                        <div class="call-chat">
+                            <button class="btn btn-success text-white btn-circle btn" type="button" onclick="showPhoneNumber('${user.name}', '${user.phone}')">
+                                <i class="fas fa-phone"></i>
+                            </button>
+                            <button class="btn btn-info btn-circle btn" type="button" onclick="redirectToEmail('${user.email}')">
+                                <i class="far fa-comments text-white"></i>
+                            </button>
+                        </div>
+                        <a href="javascript:void(0)" class="d-flex align-items-center">
+                            <img src="https://i.pravatar.cc/150?u=${user._id}" alt="user-img" class="img-circle" width="50">
+                            <div class="ms-2">
+                                <span class="text-dark">${user.name} <small class="d-block ${statusClass}">${user.status || 'offline'}</small></span>
+                            </div>
+                        </a>
+                    </li>
+                `;
+                chatList.insertAdjacentHTML('beforeend', userItem);
+            });
+    
+            updateChatPagination();
+        }
+    
+        function updateChatPagination() {
+            const totalPages = Math.ceil(contacts.length / chatPerPage);
+            const paginationContainer = document.getElementById('chat-pagination');
+            paginationContainer.innerHTML = '';
+    
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                pageButton.addEventListener('click', () => {
+                    currentChatPage = i;
+                    displayChatList(currentChatPage);
+                });
+                paginationContainer.appendChild(pageButton);
+            }
+            
+        }
+        function showPhoneNumber(name, phone) {
+            let msg = "hhhhh";
+            window.open(`https://wa.me/${phone}?text=I%27m%20api%20msg%20hello%20${name}%20friend%20${msg}`, '_blank');
+            alert(`Phone number of ${name}: tel:${phone}`);
+        }
+    
+        function redirectToEmail(email) {
+            window.location.href = `mailto:${email}`;
+        }
+        
+        function handleButtonClicks() {
+            chatList.addEventListener('click', (event) => {
+                const target = event.target;
+                if (target.matches('button[data-phone]')) {
+                    const name = target.dataset.name;
+                    const phone = target.dataset.phone;
+                    showPhoneNumber(name, phone);
+                } else if (target.matches('button[data-email]')) {
+                    const email = target.dataset.email;
+                    redirectToEmail(email);
+                }
+            });
+        }
+    
+      
+    
+        fetch('https://cyberops-bn.onrender.com/api/v1/feedback/getContacts')
+            .then(response => response.json())
+            .then(data => {
+                contacts = data.data;
+                displayChatList(currentChatPage);
+                handleButtonClicks();
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    });
+    

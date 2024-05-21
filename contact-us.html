@@ -827,15 +827,15 @@ element.style {
 <script>
     document.getElementById("submit-comment").addEventListener("click", function () {
         var formData = {
-            author: document.getElementById("name").value,
+            name: document.getElementById("name").value,
             email: document.getElementById("email").value,
             phone: document.getElementById("phone").value,
-            url: document.getElementById("title").value,
-            comment: document.getElementById("comment").value
+            website: document.getElementById("title").value,
+            message: document.getElementById("comment").value
         };
 
         
-		fetch('https://cyberops-bn.onrender.com/api/v1/post/email', {
+		fetch('https://cyberops-bn.onrender.com/api/v1/feedback/contactUs', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -846,7 +846,7 @@ element.style {
     .then(data => {
        
         Toastify({
-            text: 'Success: ' + JSON.stringify(data),
+            text: 'Successfull submited ',
             duration: 3000, 
             close: true,
             backgroundColor: 'green',
