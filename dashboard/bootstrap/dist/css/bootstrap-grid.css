@@ -43,7 +43,7 @@
     max-width: 1320px;
   }
 }
-.row {
+/* .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   display: flex;
@@ -51,7 +51,7 @@
   margin-top: calc(var(--bs-gutter-y) * -1);
   margin-right: calc(var(--bs-gutter-x) / -2);
   margin-left: calc(var(--bs-gutter-x) / -2);
-}
+} */
 .row > * {
   box-sizing: border-box;
   flex-shrink: 0;

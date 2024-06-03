@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    fetch('https://cyberops-bn.onrender.com/api/v1/feedback/getContacts')
+    fetch('https://cyberops-bn.onrender.com/api/v1/cyberContact/getCyberContact')
         .then(response => response.json())
         .then(data => {
             contacts = data.data;

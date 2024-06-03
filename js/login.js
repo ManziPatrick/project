@@ -10,7 +10,7 @@ function signIn() {
             password: document.getElementById('password').value.trim()
         };
 
-        fetch('https://cyberops-bn.onrender.com/api/v1/user/loginAdmin', {
+        fetch('https://cyberops-bn.onrender.com/api/v1/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,6 +42,8 @@ function signIn() {
            
             localStorage.setItem('token', data.token);
             localStorage.setItem('userID', data._id);
+            localStorage.setItem('role', data.role);
+            localStorage.setItem('profilePic', data.profilePic);
             Toastify({
                 text: 'Login sucessfull' ,
                 duration: 3000, 
@@ -67,7 +69,7 @@ function signIn() {
         .catch(error => {
             
                 Toastify({
-                    text: 'Login failed. check your email or password'+ error,
+                    text: 'Login failed. check your email or password',
                     duration: 3000, 
                     close: true,
                     backgroundColor: 'red',

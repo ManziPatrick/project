@@ -43,8 +43,9 @@ if (!token) {
         const firstName = userInfo.name.split(' ')[0];
         document.querySelector("#Profile-name").innerHTML = firstName;
         const userId = localStorage.getItem('userID');
+        
 
-        fetch(`https://cyberops-bn.onrender.com/api/v1/user/getAdminById/${userId}`)
+        fetch(`https://cyberops-bn.onrender.com/api/v1/admin/getAdminById/${userId}`)
             .then(response => {
 
                 if (!response.ok) {
@@ -54,7 +55,7 @@ if (!token) {
             })
             .then(userData => {
 
-                document.getElementById('navpic').src = userData.profilePic || 'plugins/images/large/img1.jpg';
+                
             })
             .catch(error => {
                 console.error('Error:', error);

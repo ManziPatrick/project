@@ -23,11 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Add event listener for the "Update Profile" button
     document.getElementById('updateButto').addEventListener('click', function(event) {
-        // Prevent the default form submission behavior
         event.preventDefault();
-        // Call the updateProfile function
         updateProfile(); 
     });
 
@@ -36,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (userId) {
        
-        fetch(`https://cyberops-bn.onrender.com/api/v1/user/getAdminById/${userId}`)
+        fetch(`https://cyberops-bn.onrender.com/api/v1/admin/updateAdminById/${userId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch user data');
@@ -75,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
 async function updateProfile() {
     try {
         const email = document.getElementById('excyberopsnetworks-email').value;
-        const name = document.getElementById('fullName').value; // Use value directly for input fields
-        const image = document.getElementById('profileImageInput'); // Assuming you have an input with ID 'profileImage'
+        const name = document.getElementById('fullName').value; 
+        const image = document.getElementById('profileImageInput'); 
         const imageFile = image.files[0];
         if (!email || !name ||  !imageFile) {
             console.error('Please fill in all required fields.');
@@ -100,10 +97,8 @@ async function updateProfile() {
         }
 
         alert('Profile updated successfully');
-        // ... other success logic (e.g., update UI)
 
     } catch (error) {
         console.error('Error updating profile:', error);
-        // Handle errors appropriately (e.g., display error message to user)
     }
 }

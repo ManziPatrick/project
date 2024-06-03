@@ -54,7 +54,7 @@ function registerAdmin() {
       password: password
     };
 
-    fetch('https://cyberops-bn.onrender.com/api/v1/user/registerAdmin', {
+    fetch('https://cyberops-bn.onrender.com/api/v1/admin/registerUser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

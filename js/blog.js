@@ -23,7 +23,7 @@ function displayPosts(page) {
 
     paginatedPosts.forEach(post => {
         const card = document.createElement('div');
-        card.classList.add('col-md-6', 'card');
+        card.classList.add( 'cards');
         const createdAtString = post.createdAt;
         const createdAtDate = new Date(createdAtString);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };

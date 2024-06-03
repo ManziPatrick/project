@@ -1,130 +1,69 @@
-
-document.addEventListener('DOMContentLoaded', function () {
-    var form = document.querySelector('.wpcf7-form.init');
-
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        var formData = {};
-        var formElements = form.elements;
-
-        for (var i = 0; i < formElements.length; i++) {
-            var field = formElements[i];
-            if (field.name) {
-                formData[field.name] = field.value;
-            }
-        }
-        localStorage.setItem('formData', JSON.stringify(formData));
-
-        alert("You can also submit the form to the server if needed")
-     
-
-        fetch('https://cyberops-bn.onrender.com/api/v1/post/email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to send form data to the backend.');
-            }
-        
-            alert('Form data has been sent to the backend successfully.');
-            
-            form.reset();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-         
-        });
-      
-     
-        
-    });
-});
-
-
-var recentAppointments = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', phone: '1234567890', message: 'Appointment message 1' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '0987654321', message: 'Appointment message 2' },
-    { id: 3, name: 'John Doe', email: 'john@example.com', phone: '1234567890', message: 'Appointment message 1' },
-    { id: 4, name: 'Jane Smith', email: 'jane@example.com', phone: '0987654321', message: 'Appointment message 2' },
-    { id: 5, name: 'John Doe', email: 'john@example.com', phone: '1234567890', message: 'Appointment message 1' },
-    { id: 6, name: 'Jane Smith', email: 'jane@example.com', phone: '0987654321', message: 'Appointment message 2' },
-    { id: 7, name: 'John Doe', email: 'john@example.com', phone: '1234567890', message: 'Appointment message 1' },
-    { id: 8, name: 'Jane Smith', email: 'jane@example.com', phone: '0987654321', message: 'Appointment message 2' },
-    { id: 9, name: 'John Doe', email: 'john@example.com', phone: '1234567890', message: 'Appointment message 1' },
-    { id: 10, name: 'Jane Smith', email: 'jane@example.com', phone: '0987654321', message: 'Appointment message 2' },
-    { id: 11, name: 'John Doe', email: 'john@example.com', phone: '1234567890', message: 'Appointment message 1' },
-    { id: 12, name: 'Jane Smith', email: 'jane@example.com', phone: '0987654321', message: 'Appointment message 2' },
-];
-
-
-var contactMessages = [
-    { name: 'Alice', email: 'alice@example.com', phone: '111222333', message: 'Hello, I have a question.' },
-    { name: 'Bob', email: 'bob@example.com', phone: '444555666', message: 'Hi, I need assistance.' },
-    { name: 'Alice', email: 'alice@example.com', phone: '111222333', message: 'Hello, I have a question.' },
-    { name: 'Bob', email: 'bob@example.com', phone: '444555666', message: 'Hi, I need assistance.' },
-    { name: 'Alice', email: 'alice@example.com', phone: '111222333', message: 'Hello, I have a question.' },
-    { name: 'Bob', email: 'bob@example.com', phone: '444555666', message: 'Hi, I need assistance.' },
-    { name: 'Alice', email: 'alice@example.com', phone: '111222333', message: 'Hello, I have a question.' },
-    { name: 'Bob', email: 'bob@example.com', phone: '444555666', message: 'Hi, I need assistance.' },
-];
-
-var currentPage = 1;
-var itemsPerPage = 3;
-
-
-function displayAppointments(page) {
-    currentPage = page || 1;
-    var startIndex = (currentPage - 1) * itemsPerPage;
-    var endIndex = startIndex + itemsPerPage;
-    var appointmentsSubset = recentAppointments.slice(startIndex, endIndex);
-    populateTable(appointmentsSubset);
-}
-
-function displayContactMessages(page) {
-    currentPage = page || 1;
-    var startIndex = (currentPage - 1) * itemsPerPage;
-    var endIndex = startIndex + itemsPerPage;
-    var messagesSubset = contactMessages.slice(startIndex, endIndex);
-    populateTable(messagesSubset);
-}
-
-function populateTable(data) {
-    var tableBody = document.getElementById('tableBody');
-    if (!tableBody) {
-        console.error('Table body element not found.');
-        return;
+async function fetchData() {
+    try {
+        const response = await fetch('https://cyberops-bn.onrender.com/api/v1/feedback/getContacts');
+        const result = await response.json();
+        return result.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
+}
+
+function populateTable(data, page, limit) {
+    const tableBody = document.getElementById('tableBody');
     tableBody.innerHTML = '';
 
-    for (var i = 0; i < data.length; i++) {
-        var item = data[i];
-        var row = tableBody.insertRow();
-        row.insertCell(0).textContent = item.id || '';
-        row.insertCell(1).textContent = item.name || '';
-        row.insertCell(2).textContent = item.email || '';
-        row.insertCell(3).textContent = item.phone || '';
-        row.insertCell(4).textContent = item.message || '';
-    }
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const paginatedData = data.slice(startIndex, endIndex);
+
+    paginatedData.forEach((item, index) => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${startIndex + index + 1}</td>
+            <td>${item.name}</td>
+            <td>${item.email}</td>
+            <td>${item.phone}</td>
+            <td>${item.message}</td>
+        `;
+
+        tableBody.appendChild(row);
+    });
 }
 
-function previousPage() {
-    if (currentPage > 1) {
-        currentPage--;
-        displayAppointments(currentPage);
+function setupPagination(data, currentPage, limit) {
+    const paginationContainer = document.getElementById('paginationContainer');
+    paginationContainer.innerHTML = '';
+
+    const totalPages = Math.ceil(data.length / limit);
+
+    const prevButton = document.createElement('button');
+    prevButton.innerHTML = '&lt;';
+    prevButton.disabled = currentPage === 1;
+    prevButton.addEventListener('click', () => loadPage(data, currentPage - 1, limit));
+    paginationContainer.appendChild(prevButton);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.innerText = i;
+        button.className = (i === currentPage) ? 'active' : '';
+        button.addEventListener('click', () => loadPage(data, i, limit));
+        paginationContainer.appendChild(button);
     }
+
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = '&gt;';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.addEventListener('click', () => loadPage(data, currentPage + 1, limit));
+    paginationContainer.appendChild(nextButton);
 }
 
-function nextPage() {
-    var totalPages = Math.ceil(recentAppointments.length / itemsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        displayAppointments(currentPage);
-    }
+async function loadPage(data, page, limit) {
+    populateTable(data, page, limit);
+    setupPagination(data, page, limit);
 }
 
-displayAppointments();
+document.addEventListener('DOMContentLoaded', async () => {
+    const data = await fetchData();
+    loadPage(data, 1, 5);
+});

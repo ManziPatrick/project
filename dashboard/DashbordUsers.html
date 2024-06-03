@@ -209,33 +209,18 @@
                             <h3 class="box-title">Users</h3>
                             <p class="text-muted">Add class <code>.table</code></p>
                             <div class="table-responsive">
-                                <table class="table text-nowrap">
+                                <table id="userTable">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">#</th>
-                                            <th class="border-top-0">First Name</th>
-                                            <th class="border-top-0">Last Name</th>
-                                            <th class="border-top-0">Username</th>
-                                            <th class="border-top-0">Role</th>
-                                            <th class="border-top-0">Actions</th> <!-- New column for actions -->
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Deshmukh</td>
-                                            <td>Prohaska</td>
-                                            <td>@Genelia</td>
-                                            <td>admin</td>
-                                            
-                                                <td>
-                                                    <button class="btn btn-primary btn-sm edit-user" data-user-id="1">Edit</button>
-                                                    <button class="btn btn-danger btn-sm delete-user" data-user-id="1">Delete</button>
-                                                </td>
-                                                
-                                           
-                                        </tr>
-                                        <!-- Repeat similar rows for other users -->
+                                      
                                     </tbody>
                                 </table>
                             </div>

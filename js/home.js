@@ -11,7 +11,7 @@ fetch('https://cyberops-bn.onrender.com/api/v1/post/getAllPosts')
     .then(data => {
         postsArray = Array.isArray(data) ? data : [data];
         displayPosts(currentPage);
-        addPaginationButtons(postsArray.length);
+        addPaginationDots(postsArray.length);
         startSlideshow();
     })
     .catch(error => console.error('Error fetching data:', error));
@@ -50,61 +50,35 @@ function displayPosts(page) {
     });
 }
 
-function addPaginationButtons(totalPosts) {
+function addPaginationDots(totalPosts) {
     const totalPages = Math.ceil(totalPosts / postsPerPage);
     paginationContainer.innerHTML = '';
 
-    const maxButtons = 4;
-    const gap = 1;
-
-    let startButton = currentPage - gap;
-    let endButton = currentPage + gap;
-
-    if (startButton < 1) {
-        startButton = 1;
-        endButton = Math.min(totalPages, maxButtons);
-    }
-
-    if (endButton > totalPages) {
-        endButton = totalPages;
-        startButton = Math.max(1, endButton - maxButtons + 1);
-    }
-
-    if (currentPage > 1) {
-        const prevButton = document.createElement('button');
-        prevButton.textContent = '<';
-        prevButton.addEventListener('click', () => {
-            currentPage--;
-            displayPosts(currentPage);
-            resetInterval();
-        });
-        paginationContainer.appendChild(prevButton);
-    }
-
-    for (let i = startButton; i <= endButton; i++) {
-        const button = document.createElement('button');
-        button.textContent = i;
+    for (let i = 1; i <= totalPages; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
         if (i === currentPage) {
-            button.classList.add('active');
+            dot.classList.add('active');
         }
-        button.addEventListener('click', () => {
+        dot.addEventListener('click', () => {
             currentPage = i;
             displayPosts(currentPage);
+            updateActiveDot();
             resetInterval();
         });
-        paginationContainer.appendChild(button);
+        paginationContainer.appendChild(dot);
     }
+}
 
-    if (currentPage < totalPages) {
-        const nextButton = document.createElement('button');
-        nextButton.textContent = '>';
-        nextButton.addEventListener('click', () => {
-            currentPage++;
-            displayPosts(currentPage);
-            resetInterval();
-        });
-        paginationContainer.appendChild(nextButton);
-    }
+function updateActiveDot() {
+    const dots = paginationContainer.querySelectorAll('.dot');
+    dots.forEach((dot, index) => {
+        if (index + 1 === currentPage) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
 }
 
 function startSlideshow() {
@@ -114,6 +88,7 @@ function startSlideshow() {
             currentPage = 1;
         }
         displayPosts(currentPage);
+        updateActiveDot();
     }, 3000);
 }
 
