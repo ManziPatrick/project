@@ -45,6 +45,9 @@
 
 
 
+    
+
+
     document.getElementById('updateButton').style.display = 'none';
     document.getElementById('saveButton').style.display = 'none';
 
@@ -117,14 +120,18 @@
         }
     }
 
-
-    document.addEventListener('trix-before-paste', async function (e) {
-        if (e.paste.hasOwnProperty('html')) {
-
-            e.paste.html = e.paste.html.replace(/<\/?[^>]+(>|$)/g, '');
-
-            await displayBlogPosts();
-        }
+    document.addEventListener('trix-initialize', function(event) {
+        const trixEditor = event.target;
+    
+        trixEditor.addEventListener('paste', function(event) {
+            const clipboardData = (event.clipboardData || window.clipboardData);
+            const pastedHTML = clipboardData.getData('text/html');
+    
+            event.preventDefault(); 
+    
+            trixEditor.editor.loadHTML(''); 
+            trixEditor.editor.insertHTML(pastedHTML);
+        });
     });
 
 
@@ -378,7 +385,7 @@
         const formData = new FormData();
         formData.append('author', authorName);
         formData.append('title', blogName);
-        formData.append('body', blogContent); 
+        formData.append('body', blogContent);
         formData.append('images', imageFile);
     
         try {
@@ -392,7 +399,7 @@
             }
             Toastify({
                 text: 'Blog saved successfully!' ,
-                duration: 3000, 
+                duration: 3000,
                 close: true,
                 backgroundColor: 'green',
                 style: {
@@ -404,7 +411,7 @@
                 },
                 
             }).showToast();
-        
+    
     
             // alert('Post saved successfully!');
             closeForm();
@@ -413,7 +420,7 @@
             console.error('An error occurred while saving the post:', error);
             Toastify({
                 text: 'Failed to save Blog. Please try again later.' ,
-                duration: 3000, 
+                duration: 3000,
                 close: true,
                 backgroundColor: 'red',
                 style: {
