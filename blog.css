@@ -121,5 +121,12 @@
 outline-color: #7744D9;
 background-color: rgb(255, 255, 255);
 border-radius: 10px;
+text-align: center;
+padding: 10px;
 border:  2px solid #7744D9;
+}
+.replybtn:hover{
+    background-color: #7744D9;
+    color: #fff;
+
 }
