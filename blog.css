@@ -103,3 +103,23 @@
     height: 250px;
     object-fit: cover; 
 }
+.commentheader{
+   display: flex;
+   justify-content: space-between; 
+}
+.leftcomment{
+    display: flex;
+   flex-direction: row;
+   align-items: end;
+}
+.commentbody{
+    background-color: #fff;
+    margin: 6px;
+    padding: 12px;
+}
+.replybtn{
+outline-color: #7744D9;
+background-color: rgb(255, 255, 255);
+border-radius: 10px;
+border:  2px solid #7744D9;
+}
