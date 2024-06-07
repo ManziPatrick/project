@@ -147,16 +147,14 @@
                                 <span class="hide-menu">Profile</span>
                             </a>
                         </li>
-   <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashbordUsers.html"
-                                aria-expanded="false">
+                        <li class="sidebar-item" id="usersLink" style="display: none;">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashbordUsers.html" aria-expanded="false">
                                 <i class="fa fa-table" aria-hidden="true"></i>
                                 <span class="hide-menu">Users</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="newUser.html"
-                                aria-expanded="false">
+                        <li class="sidebar-item" id="newUserLink" style="display: none;">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="newUser.html" aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
                                 <span class="hide-menu">New User</span>
                             </a>
@@ -259,7 +257,13 @@
                                     <div class="form-group mb-4">
                                         <label class="col-md-12 p-0">Password</label>
                                         <div class="col-md-12 border-bottom p-0">
-                                            <input type="password" value="password" class="form-control p-0 border-0">
+                                            <div class="input-group">
+                                                <input type="password" value="password" class="form-control p-0 border-0" id="password">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-secondary" type="button" id="showPassword">Show</button>
+                                                    <button class="btn btn-outline-secondary" type="button" id="hidePassword">Hide</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group mb-4">

@@ -20,10 +20,13 @@
    <link rel="stylesheet" href="blog.css">
    <style>
    body {
-        overflow: hidden;
-        height: 100vh;
+        overflow:auto;
+        
+       
     }
-
+    .page-wrapper{
+        height: 100%;
+    }
     .container-fluid {
         margin-right: auto;
         margin-left: auto;
@@ -168,20 +171,19 @@
                                 <span class="hide-menu">Profile</span>
                             </a>
                         </li>
-   <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashbordUsers.html"
-                                aria-expanded="false">
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Users</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="newUser.html"
-                                aria-expanded="false">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="hide-menu">New User</span>
-                            </a>
-                        </li>
+<li class="sidebar-item" id="usersLink" style="display: none;">
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashbordUsers.html" aria-expanded="false">
+        <i class="fa fa-table" aria-hidden="true"></i>
+        <span class="hide-menu">Users</span>
+    </a>
+</li>
+<li class="sidebar-item" id="newUserLink" style="display: none;">
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="newUser.html" aria-expanded="false">
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        <span class="hide-menu">New User</span>
+    </a>
+</li>
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="map-google.html"
                                 aria-expanded="false">
@@ -243,10 +245,10 @@
            
             <div class="container-fluid">
               
-                <div class="row">
+                <div class="rows">
                     <section  style="background-color: #eee;">
                         <div class="container ">
-                          <div class="row d-flex justify-content-center align-items-center h-100">
+                          <div class="rows d-flex justify-content-center align-items-center h-100]">
                             <div class="col-lg-12 col-xl-11">
                               <div class="card text-black" style="border-radius: 25px;">
                                 <div class="card-body">
@@ -263,7 +265,7 @@
                                           </div>
                                         </div>
                                       
-                                        <div class="d-flex flex-row align-items-center mb-2">
+                                        <div class="d-flex flex-row align-items-center mb-1">
                                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                           <div data-mdb-input-init class="form-outline flex-fill mb-0">
                                             <label class="form-label" for="email">Your Email</label>
@@ -271,26 +273,28 @@
                                             
                                           </div>
                                         </div>
-                                      
-                                        <div class="d-flex flex-row align-items-center mb-2">
-                                          <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                          <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="password">Password</label>
-                                            <input type="password" id="password" class="form-control" />
-                                            
+                                        <div class="d-flex flex-row align-items-center mb-1">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                              <label class="form-label" for="role">Select Role</label>
+                                              <select id="role" class="form-control">
+                                                <option value="USER">Author</option>
+                                                
+                                                <option value="ADMIN">Admin</option>
+                                                <option value="GUEST">guest</option>
+                                              </select>
+                                            </div>
                                           </div>
-                                        </div>
-                                        <div id="toast-container"></div>
-                                        <div class="d-flex flex-row align-items-center mb-2">
-                                          <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                                          <div data-mdb-input-init class="form-outline flex-fill mb-0">
-                                            <label class="form-label" for="confirmPassword">Repeat your password</label>
-                                            <input type="password" id="confirmPassword" class="form-control" />
-                                            
+
+                                          <div class="d-flex flex-row align-items-center mb-2">
+                                            <i class="fas fa-image fa-lg me-3 fa-fw"></i>
+                                            <div data-mdb-input-init class="form-outline flex-fill mb-0">
+                                              <label class="form-label" for="profilePic">Profile Picture URL</label>
+                                              <input type="url" id="profilePic" name="profilePic" class="form-control" />
+                                            </div>
                                           </div>
-                                        </div>
-                                      
-                                        <div class="form-check d-flex justify-content-center mb-2">
+
+                                        <div class="form-check d-flex justify-content-center mb-1">
                                           <input class="form-check-input me-2" type="checkbox" value="" id="agreeCheckbox" />
                                           <label class="form-check-label" for="agreeCheckbox">
                                             I agree all statements in <a href="#!">Terms of service</a>

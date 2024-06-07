@@ -14,17 +14,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function populateTable(users) {
         const tableBody = document.querySelector('#userTable tbody');
-        tableBody.innerHTML = ''; // Clear existing rows
+        tableBody.innerHTML = '';
 
         users.forEach(user => {
             const row = document.createElement('tr');
+            row.setAttribute('data-id', user._id); // Add data attribute for user ID
+            row.setAttribute('data-original-role', user.role);
             row.innerHTML = `
                 <td>${user._id}</td>
                 <td>${user.name}</td>
                 <td>${user.email}</td>
-                <td>${user.role}</td>
                 <td>
-                    <button class="btn btn-primary edit-user">Edit</button>
+                    <select class="form-control role-select">
+                        <option value="ADMIN" ${user.role === 'ADMIN' ? 'selected' : ''}>Admin</option>
+                        <option value="USER" ${user.role === 'USER' ? 'selected' : ''}>Author</option>
+                        <option value="GUEST" ${user.role === 'GUEST' ? 'selected' : ''}>Guest</option>
+                    </select>
+                </td>
+                <td>
                     <button class="btn btn-danger delete-user">Delete</button>
                 </td>
             `;
@@ -35,57 +42,61 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function addEventListeners() {
-        const editButtons = document.querySelectorAll('.edit-user');
-        editButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const row = button.closest('tr');
-                const cells = row.querySelectorAll('td');
+        const roleSelects = document.querySelectorAll('.role-select');
+        roleSelects.forEach(select => {
+            select.addEventListener('change', function () {
+                const row = select.closest('tr');
+                const userId = row.getAttribute('data-id');
+                const selectedRole = select.value;
 
-                if (button.classList.contains('edit-user')) {
-                    for (let i = 1; i < cells.length - 1; i++) {
-                        const cell = cells[i];
-                        if (i === 3) {
-                            // Create a dropdown for the role field
-                            const currentRole = cell.textContent.trim();
-                            cell.innerHTML = `
-                                <select class="form-control">
-                                    <option value="admin" ${currentRole === 'admin' ? 'selected' : ''}>Admin</option>
-                                    <option value="author" ${currentRole === 'Author' ? 'selected' : ''}>Author</option>
-                                   
-                                </select>
-                            `;
-                        } else {
-                            const text = cell.textContent.trim();
-                            cell.innerHTML = `<input type="text" class="form-control" value="${text}">`;
-                        }
+                updateUser(userId, { role: selectedRole }).then(success => {
+                    if (success) {
+                        row.setAttribute('data-original-role', selectedRole);
+                        showToast('User role updated successfully!', 'success');
                     }
-                    button.textContent = 'Save';
-                    button.classList.remove('btn-primary');
-                    button.classList.add('btn-success');
-                    button.classList.add('save-user');
-                } else if (button.classList.contains('save-user')) {
-                    for (let i = 1; i < cells.length - 1; i++) {
-                        const cell = cells[i];
-                        if (i === 3) {
-                            const select = cell.querySelector('select');
-                            const selectedRole = select.value.trim();
-                            cell.textContent = selectedRole;
-                        } else {
-                            const input = cell.querySelector('input');
-                            const text = input.value.trim();
-                            cell.textContent = text;
-                        }
-                    }
-                    button.textContent = 'Edit';
-                    button.classList.remove('btn-success');
-                    button.classList.add('btn-primary');
-                    button.classList.remove('save-user');
-                }
-
-                const deleteButton = row.querySelector('.delete-user');
-                deleteButton.disabled = !deleteButton.disabled;
+                });
             });
         });
+    }
+
+    async function updateUser(userId, updatedUser) {
+        try {
+            const response = await fetch(`https://cyberops-bn.onrender.com/api/v1/user/update/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedUser),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to update user data");
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                return true;
+            } else {
+                showToast('Failed to update user role: ' + data.message, 'error');
+                return false;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showToast('An error occurred. Please try again.', 'error');
+            return false;
+        }
+    }
+
+    function showToast(message, type) {
+        const toastContainer = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerText = message;
+        toastContainer.appendChild(toast);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 3000);
     }
 
     displayUsers();

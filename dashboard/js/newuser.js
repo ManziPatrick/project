@@ -1,11 +1,13 @@
 function registerAdmin() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+    const role = document.getElementById('role').value;
+    
+    const profilePic = document.getElementById('profilePic').value;
+
     const agreeCheckbox = document.getElementById('agreeCheckbox').checked;
 
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !email || !profilePic) {
       
       Toastify({
         text:'Please fill in all fields',
@@ -24,25 +26,7 @@ function registerAdmin() {
       return;
     }
 
-    if (password !== confirmPassword) {
-      Toastify({
-        text:'Passwords do not match',
-        duration: 3000, 
-        close: true,
-        backgroundColor: 'error',
-        style: {
-            'maxWidth': '400px',
-            'font-size': '14px',
-            'padding': '8px',
-            'text-align': 'center',
-    
-        },
-        
-    }).showToast();
-      // alert('Passwords do not match');
-      return;
-    }
-
+   
     if (!agreeCheckbox) {
       alert('Please agree to the terms of service');
       return;
@@ -51,7 +35,9 @@ function registerAdmin() {
     const data = {
       name: name,
       email: email,
-      password: password
+      role:role,
+      profilePic: profilePic,
+     
     };
 
     fetch('https://cyberops-bn.onrender.com/api/v1/admin/registerUser', {
@@ -61,11 +47,10 @@ function registerAdmin() {
         },
         body: JSON.stringify(data),
       })
-      .then(response => {
+      .then(async response => {
         if (!response.ok) {
-          return response.json().then(errorData => {
-            throw { message: errorData.message || 'Network response was not ok', error: errorData };
-          });
+          const errorData = await response.json();
+          throw { message: errorData.message };
         }
         return response.json();
       })

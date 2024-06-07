@@ -133,20 +133,19 @@
                                 <span class="hide-menu">Profile</span>
                             </a>
                         </li>
-   <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashbordUsers.html"
-                                aria-expanded="false">
-                                <i class="fa fa-table" aria-hidden="true"></i>
-                                <span class="hide-menu">Users</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="newUser.html"
-                                aria-expanded="false">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="hide-menu">New User</span>
-                            </a>
-                        </li>
+<li class="sidebar-item" id="usersLink" style="display: none;">
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="DashbordUsers.html" aria-expanded="false">
+        <i class="fa fa-table" aria-hidden="true"></i>
+        <span class="hide-menu">Users</span>
+    </a>
+</li>
+<li class="sidebar-item" id="newUserLink" style="display: none;">
+    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="newUser.html" aria-expanded="false">
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        <span class="hide-menu">New User</span>
+    </a>
+</li>
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="map-google.html"
                                 aria-expanded="false">
@@ -207,7 +206,7 @@
                     <div class="col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title">Users</h3>
-                            <p class="text-muted">Add class <code>.table</code></p>
+                            <div class="table-container">
                             <div class="table-responsive">
                                 <table id="userTable">
                                     <thead>
@@ -223,6 +222,9 @@
                                       
                                     </tbody>
                                 </table>
+                            </div>
+                            <div id="paginationContainer"></div>
+                            
                             </div>
                         </div>
                     </div>

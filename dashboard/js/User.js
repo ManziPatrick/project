@@ -1,6 +1,30 @@
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    const isAdmin = () => {
+        const role = localStorage.getItem('role');
+        console.log("hhhhhhhhhhhh",role)
+        return role && role === 'ADMIN';
+    };
+
+    const protectedRoutes = ['DashbordUsers.html', 'newUser.html'];
+    const currentPath = window.location.pathname;
+    const role = localStorage.getItem('role');
+    if (protectedRoutes.includes(currentPath) && !isAdmin()) {
+       
+        window.location.href = 'dashboard.html';
+    }
+    if (role === 'ADMIN') {
+        document.getElementById('usersLink').style.display = 'block';
+        document.getElementById('newUserLink').style.display = 'block';
+    } else {
+        document.getElementById('usersLink').style.display = 'none';
+        document.getElementById('newUserLink').style.display = 'none';
+    }
+});
+
+
 document.addEventListener("DOMContentLoaded", function() {
  
     var profilePic = document.getElementById("navpic");
@@ -39,7 +63,9 @@ if (!token) {
 } else {
     const userInfo = parseJwt(token);
     if (userInfo) {
-       
+        const profilePicElement = document.getElementById('navpic');
+        profilePicElement.src = localStorage.getItem('profilePic');
+
         const firstName = userInfo.name.split(' ')[0];
         document.querySelector("#Profile-name").innerHTML = firstName;
         const userId = localStorage.getItem('userID');
@@ -54,7 +80,9 @@ if (!token) {
                 return response.json();
             })
             .then(userData => {
-
+                
+            
+                console.log("ghggggggggghgh",userData)
                 
             })
             .catch(error => {
