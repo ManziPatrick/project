@@ -4,16 +4,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isAdmin = () => {
         const role = localStorage.getItem('role');
-        console.log("hhhhhhhhhhhh",role)
         return role && role === 'ADMIN';
+    };
+
+    const redirectToDashboard = () => {
+        window.location.href = '/dashboard.html'; 
     };
 
     const protectedRoutes = ['DashbordUsers.html', 'newUser.html'];
     const currentPath = window.location.pathname;
     const role = localStorage.getItem('role');
+
     if (protectedRoutes.includes(currentPath) && !isAdmin()) {
-       
-        window.location.href = 'dashboard.html';
+        redirectToDashboard();
     }
     if (role === 'ADMIN') {
         document.getElementById('usersLink').style.display = 'block';
@@ -22,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('usersLink').style.display = 'none';
         document.getElementById('newUserLink').style.display = 'none';
     }
+
 });
 
 
