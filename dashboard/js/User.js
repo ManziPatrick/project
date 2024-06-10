@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (role === 'ADMIN') {
         document.getElementById('usersLink').style.display = 'block';
         document.getElementById('newUserLink').style.display = 'block';
+        document.getElementById('appointment').style.display = 'block';
     } else {
         document.getElementById('usersLink').style.display = 'none';
         document.getElementById('newUserLink').style.display = 'none';
+        document.getElementById('appointment').style.display = 'none';
     }
 
 });
