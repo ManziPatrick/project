@@ -412,6 +412,16 @@ input[readonly] {
 .trix-button-row button {
     background-color: white;
 }
+@media (max-width: 768px) {
+    .page-wrapper{
+        height: 100%;
+        overflow-y: auto;
+        }
+        #rowd{
+            height: 100%;
+            
+        }
+}
 
 @media (max-width: 768px) {
     .hide-menu {
@@ -427,7 +437,13 @@ input[readonly] {
     .forms-data{
         display: block;
         width: 100%;
+    
     }
+    #rowd{
+        height: 100%;
+        
+    }
+    
 }
 .page-wrapper{
 height: 90vh;
