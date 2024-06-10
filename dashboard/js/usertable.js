@@ -57,6 +57,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
         });
+
+        const deleteButtons = document.querySelectorAll('.delete-user');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const row = button.closest('tr');
+                const userId = row.getAttribute('data-id');
+
+                deleteUser(userId).then(success => {
+                    if (success) {
+                        row.remove();
+                        showToast('User deleted successfully!', 'success');
+                    }
+                });
+            });
+        });
     }
 
     async function updateUser(userId, updatedUser) {
@@ -78,6 +93,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 return true;
             } else {
                 showToast('Failed to update user role: ' + data.message, 'error');
+                return false;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showToast('An error occurred. Please try again.', 'error');
+            return false;
+        }
+    }
+
+    async function deleteUser(userId) {
+        try {
+            const response = await fetch(`https://cyberops-bn.onrender.com/api/v1/user/delete/${userId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to delete user");
+            }
+
+            const data = await response.json();
+            if (data.success) {
+                displayUsers();
+                return true;
+            } else {
+                showToast('Failed to delete user: ' + data.message, 'error');
                 return false;
             }
         } catch (error) {
