@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (protectedRoutes.includes(currentPath) && !isAdmin()) {
         redirectToDashboard();
     }
-    if (role === 'ADMIN') {
+    if (role === 'admin') {
         document.getElementById('usersLink').style.display = 'block';
         document.getElementById('newUserLink').style.display = 'block';
         document.getElementById('appointment').style.display = 'block';
